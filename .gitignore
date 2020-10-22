@@ -1,0 +1,7 @@
+.DS_Store
+cp4i-deployment/cp4i-subscription.yaml
+cp4i-deployment/operators-group.yaml
+*.txt
+.taskcat_overrides.yml
+.taskcat/
+taskcat_outputs/
