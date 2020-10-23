@@ -1,3 +1,5 @@
+== Deployment steps
+
 === Step 1. Sign up for a Red Hat Subscription
 
 This Quick Start requires a Red Hat subscription. During the deployment of the Quick Start, you’ll need to provide your https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift Installer Provisioned Infrastructure pull secret].
@@ -5,6 +7,8 @@ This Quick Start requires a Red Hat subscription. During the deployment of the Q
 If you don’t have an Red Hat account, you can register on the Red Hat website. (Note that registration may require a non-personal email address). To procure a 60-day evaluation license for OpenShift, follow the instructions at https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it[Evaluate Red Hat OpenShift Container Platform].
 
 The https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift pull secret] should be uploaded to an S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.
+
+=== 
 
 === Step 2. Cloud Pak for Integration Subscription
 
@@ -40,19 +44,19 @@ You are responsible for the cost of the AWS services used while running this Qui
 
 [cols=",",]
 |===
-|https://fwd.aws/r9QRP[*Deploy Cloud Pak for Integration into a* +
-*new VPC on AWS*] |https://fwd.aws/6zgYY[*Deploy Cloud Pak for Integration into an* +
-*existing VPC on AWS*]
+|https://fwd.aws/r9QRP[[line-through]*Deploy Cloud Pak for Data into a* +
+[line-through]*new VPC on AWS*] |https://fwd.aws/6zgYY[[line-through]*Deploy Cloud Pak for Data into an* +
+[line-through]*existing VPC on AWS*]
 |===
 
-A Cloud Pak for Integration standard deployment takes about 2 hours.
+A Cloud Pak for Integration standard deployment takes about 2 hours[line-through]*.*
 
-[arabic, start=6]
+[arabic]
 . Check the Region that’s displayed in the upper-right corner of the navigation bar and change it if necessary. This is where the network infrastructure for Cloud Pak for Integration will be built. The template is launched in the US East (Ohio) Region by default.
 
 *Note* The Cloud Pak for Integration on AWS Quick Start is limited to Regions that have Amazon EBS service available. For a current list of supported Regions, see the https://docs.aws.amazon.com/general/latest/gr/ebs-service.html[endpoints and quotas webpage]. Running in HA configuration is supported only in Regions with at least three Availability Zones.
 
-[arabic, start=7]
+[arabic, start=2]
 . On the *Create stack* page, keep the default setting for the template URL, and then choose *Next*.
 . On the *Specify stack details* page, change the stack name if needed. Review the parameters for the template. Provide values for the parameters that require input. For all other parameters, review the default settings and customize them as necessary.
 
@@ -88,7 +92,11 @@ CIDR) |10.0.32.0/19 |The CIDR block for the private subnet located in Availabili
 |Private subnet 3 CIDR +
 (PrivateSubnet3CIDR) |10.0.64.0/19 |The CIDR block for the private subnet located in Availability Zone 3.
 |Public subnet 1 CIDR +
-(PublicSubnet1CIDR) |10.0.128.0/20 |The CIDR block for the public subnet located in Availability Zone 1.
+(PublicSubnet1CIDR) |10.0.128.0/20 a|
+____
+The CIDR block for the public subnet located in Availability Zone 1.
+____
+
 |Public subnet 2 CIDR +
 (PublicSubnet2CIDR) |10.0.144.0/20 |The CIDR block for the public subnet located in Availability Zone 2
 |Public subnet 3 CIDR +
@@ -96,7 +104,9 @@ CIDR) |10.0.32.0/19 |The CIDR block for the private subnet located in Availabili
 a|
 BootNodeAccessCIDR
 
-(BootNodeAccessCIDR)
+(BootNodeAccessCIDR
+
+)
 
 |_Requires input_ |The CIDR IP range that is permitted to access the Boot Node instance. We recommend that you set this value to a trusted IP range. The value `0.0.0.0/0` permits all IP addresses to access. Additional values can be added post-deployment from the Amazon EC2 console.
 |===
@@ -159,7 +169,7 @@ OCS instance type
 
 (OCSInstanceType)
 
-|m4.4xlarge |The EC2 instance type for the OpenShift Container Storage instances.
+|*m4.4xlarge* |*The EC2 instance type for the OpenShift Container Storage instances.*
 a|
 Number of OCS nodes
 
@@ -187,12 +197,12 @@ ____
 |Parameter label (name) |Default |Description
 |IBM Cloud Pak for Integration version |2020.3 |The version of Cloud Pak for Integration to be deployed. Currently only v 2020.3 is supported.
 |IBM Cloud Pak for Integration Username +
-(APIUsername) |cp |Enter the IBM Cloud Pak for Integration Username value to access IBM Container Registry.
-|IBM Cloud Pak for Integration Entitlement Key (APIKey) |Requires Input |Enter the IBM Cloud Pak for Integration API key to access IBM Container Registry.
+(*APIUsername*) |cp |Enter the IBM Cloud Pak for Integration Username value to access IBM Container Registry.
+|IBM Cloud Pak for Integration Entitlement Key (*APIKey*) |*Requires Input* |Enter the IBM Cloud Pak for Integration API key to access IBM Container Registry.
 |License agreement +
-(LicenseAgreement) |— |Choose *Accept* to acknowledge that you have read and agree to the license terms for Cloud Pak for Integration (https://http://ibm.biz/BdqSw4[ibm.biz/BdqSw4])
+(*LicenseAgreement*) |— |Choose *Accept* to acknowledge that you have read and agree to the license terms for Cloud Pak for Integration (https://http://ibm.biz/BdqSw4[ibm.biz/BdqSw4])
 |OpenShift project +
-(NameSpace) |cp4i |The OpenShift project that will be created for deploying Cloud Pak for Integration. It can be any lowercase string.
+(*NameSpace*) |cp4i |The OpenShift project that will be created for deploying Cloud Pak for Integration. It can be any lowercase string.
 a|
 Asset Repository
 
@@ -206,13 +216,13 @@ Operations Dashboard
 
 |False |Choose *True* to install an example instance of the *Operations Dashboard* *capability*.
 |API Lifecycle and Management +
-(APILM) |False |Choose *True* to install an example instance of the *API Lifecycle and Management capability* .
+(*APILM*) |False |Choose *True* to install an example instance of the *API Lifecycle and Management capability* .
 |Application Integration Dashboard (AIDB) |False |Choose *True* to install an example instance of the *Application Integration Dashboard capability*.
 |Application Integration Designer +
-(AIDE) |False |Choose *True* to install an example instance of the *Application Integration Designer* *capability*.
+(*AIDE*) |False |Choose *True* to install an example instance of the *Application Integration Designer* *capability*.
 |Messaging (MQ) |False |Choose *True* to install an example instance of the *Messaging runtime.*
 |Event Streaming +
-(ES) |False |Choose *True* to install an example instance of the *Event Streaming runtime.*
+(*ES*) |False |Choose *True* to install an example instance of the *Event Streaming runtime.*
 |Gateway (GW) |*False* |Choose *True* to install an example instance of the *Gateway runtime.*
 |High Speed Transfers (HST) |*False* a|
 Choose *True* to install an example instance of the *High Speed Transfer*
@@ -231,21 +241,21 @@ ____
 |===
 |Parameter label (name) |Default |Description
 |Quick Start S3 bucket name +
-(QSS3BucketName) |aws-quickstart |The S3 bucket you created for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. The bucket name can include numbers, lowercase letters, uppercase letters, and hyphens, but should not start or end with a hyphen.
+(*QSS3BucketName*) |aws-quickstart |The S3 bucket you created for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. The bucket name can include numbers, lowercase letters, uppercase letters, and hyphens, but should not start or end with a hyphen.
 |Quick Start S3 key prefix +
-(QSS3KeyPrefix) |quickstart-ibm-icp-for-integration/ |The https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html[S3 key name prefix] used to simulate a folder for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. This prefix can include numbers, lowercase letters, uppercase letters, hyphens, and forward slashes.
+(*QSS3KeyPrefix*) |quickstart-ibm-icp-for-integration/ |The https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html[S3 key name prefix] used to simulate a folder for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. This prefix can include numbers, lowercase letters, uppercase letters, hyphens, and forward slashes.
 a|
 Quick Start S3 bucket region
 
 (QSS3BucketRegion)
 
 |us-east-1 |The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
-|Output S3 bucket name (OutputBucketName) |_Requires Input_ |The Existing S3 bucket name where the zip file output should be placed.
+|Output S3 bucket name (*OutputBucketName*) |_Requires Input_ |The Existing S3 bucket name where the zip file output should be placed.
 |===
 
 ==== Option 2: Parameters for deploying Cloud Pak for Integration into an existing VPC
 
-https://fwd.aws/WNbyg[*View template*]
+https://fwd.aws/WNbyg[[line-through]*View template*]
 
 ____
 _Network configuration:_
@@ -275,7 +285,9 @@ ____
 a|
 BootNodeAccessCIDR
 
-(BootNodeAccessCIDR)
+(BootNodeAccessCIDR
+
+)
 
 |_Requires input_ |The CIDR IP range that is permitted to access the Boot Node instance. We recommend that you set this value to a trusted IP range. The value `0.0.0.0/0` permits all IP addresses to access. Additional values can be added post-deployment from the Amazon EC2 console.
 |===
@@ -338,7 +350,7 @@ OCS instance type
 
 (OCSInstanceType)
 
-|m4.4xlarge |The EC2 instance type for the OpenShift Container Storage instances.
+|*m4.4xlarge* |*The EC2 instance type for the OpenShift Container Storage instances.*
 a|
 Number of OCS nodes
 
@@ -367,11 +379,11 @@ ____
 |IBM Cloud Pak for Integration version |2020.3 |The version of Cloud Pak for Integration to be deployed. Currently only v 2020.3 is supported.
 |IBM Cloud Pak for Integration Username +
 (*APIUsername*) |cp |Enter the IBM Cloud Pak for Integration Username value to access IBM Container Registry.
-|IBM Cloud Pak for Integration Entitlement Key (APIKey) |Requires Input |Enter the IBM Cloud Pak for Integration API key to access IBM Container Registry.
+|IBM Cloud Pak for Integration Entitlement Key (*APIKey*) |*Requires Input* |Enter the IBM Cloud Pak for Integration API key to access IBM Container Registry.
 |License agreement +
-(LicenseAgreement) |— |Choose *Accept* to acknowledge that you have read and agree to the license terms for Cloud Pak for Integration (https://http://ibm.biz/BdqSw4[ibm.biz/BdqSw4])
+(*LicenseAgreement*) |— |Choose *Accept* to acknowledge that you have read and agree to the license terms for Cloud Pak for Integration (https://http://ibm.biz/BdqSw4[ibm.biz/BdqSw4])
 |OpenShift project +
-(NameSpace) |cp4i |The OpenShift project that will be created for deploying Cloud Pak for Integration. It can be any lowercase string.
+(*NameSpace*) |cp4i |The OpenShift project that will be created for deploying Cloud Pak for Integration. It can be any lowercase string.
 a|
 Asset Repository
 
@@ -385,13 +397,13 @@ Operations Dashboard
 
 |False |Choose *True* to install an example instance of the *Operations Dashboard* *capability*.
 |API Lifecycle and Management +
-(APILM) |False |Choose *True* to install an example instance of the *API Lifecycle and Management capability* .
+(*APILM*) |False |Choose *True* to install an example instance of the *API Lifecycle and Management capability* .
 |Application Integration Dashboard (AIDB) |False |Choose *True* to install an example instance of the *Application Integration Dashboard capability*.
 |Application Integration Designer +
-(AIDE) |False |Choose *True* to install an example instance of the *Application Integration Designer* *capability*.
+(*AIDE*) |False |Choose *True* to install an example instance of the *Application Integration Designer* *capability*.
 |Messaging (MQ) |False |Choose *True* to install an example instance of the *Messaging runtime.*
 |Event Streaming +
-(ES) |False |Choose *True* to install an example instance of the *Event Streaming runtime.*
+(*ES*) |False |Choose *True* to install an example instance of the *Event Streaming runtime.*
 |Gateway (GW) |*False* |Choose *True* to install the *Gateway runtime.*
 |High Speed Transfers (HST) |*False* a|
 Choose *True* to install the *High Speed Transfers*
@@ -410,7 +422,7 @@ ____
 |===
 |Parameter label (name) |Default |Description
 |Quick Start S3 bucket name +
-(QSS3BucketName) |aws-quickstart |The S3 bucket you created for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. The bucket name can include numbers, lowercase letters, uppercase letters, and hyphens, but should not start or end with a hyphen.
+(*QSS3BucketName*) |aws-quickstart |The S3 bucket you created for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. The bucket name can include numbers, lowercase letters, uppercase letters, and hyphens, but should not start or end with a hyphen.
 a|
 Quick Start S3 bucket region
 
@@ -418,12 +430,12 @@ Quick Start S3 bucket region
 
 |us-east-1 |The AWS Region where the Quick Start S3 bucket (QSS3BucketName) is hosted. When using your own bucket, you must specify this value.
 |Quick Start S3 key prefix +
-(QSS3KeyPrefix) |quickstart-ibm-cp-for-integration |The https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html[S3 key name prefix] used to simulate a folder for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. This prefix can include numbers, lowercase letters, uppercase letters, hyphens, and forward slashes.
+(*QSS3KeyPrefix*) |quickstart-ibm-cp-for-integration |The https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html[S3 key name prefix] used to simulate a folder for your copy of Quick Start assets, if you decide to customize or extend the Quick Start for your own use. This prefix can include numbers, lowercase letters, uppercase letters, hyphens, and forward slashes.
 |Output S3 bucket name +
-(OutputBucketName) |_Requires Input_ |The Existing S3 bucket name where the zip file output should be placed.
+(*OutputBucketName*) |_Requires Input_ |The Existing S3 bucket name where the zip file output should be placed.
 |===
 
-[arabic, start=9]
+[arabic, start=4]
 . On the options page, you can https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html[specify tags] (key-value pairs) for resources in your stack and https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html[set advanced options]. When you’re done, choose *Next*.
 . On the *Review* page, review and confirm the template settings. Under *Capabilities*, select the check box to acknowledge that the template will create IAM resources.
 . Choose *Create stack* to deploy the stack.
@@ -441,90 +453,59 @@ parameter controls access to the application nodes. This section describes the s
 [arabic]
 . From EC2 dashboard select Security Groups .
 
-:xrefstyle: short
-[#testStep1]
-.OpenShift stack
-[link=images/image_secgroup.png]
-image::../images/image_secgroup.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image1.png[Graphical user interface, application Description automatically generated,width=648,height=136]
 
 [arabic, start=2]
 . Select Security Group name starting with k8s-elb
 
-:xrefstyle: short
-[#testStep1]
-.Security Group for applications
-[link=images/image_secgroup_apps.png]
-image::../images/image_secgroup_apps.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image2.png[Graphical user interface, application Description automatically generated,width=648,height=111]
 
 [arabic, start=3]
 . The security group window displays the ingress rules. Select the *Inbound* tab, and then choose *Edit inbound rules* to bring up the rule editor.
 
-:xrefstyle: short
-[#testStep1]
-.Editing inbound rules
-[link=images/image_inbound.png]
-image::../images/image_inbound.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image3.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=308]
 
 [arabic, start=4]
 . Choose *Add Rule*, and fill in the rule details. For the rule *Type*, select either HTTP or HTTPS in the drop-down menu. Port 80 or 443 is filled in automatically. Add the network CIDR for the group of IP addresses that you want to permit HTTP or HTTPS access to the proxy nodes. To allow any IP address, use 0.0.0.0/0.
 
-:xrefstyle: short
-[#testStep1]
-.Supplying rule details
-[link=images/image_secgroup_rule_details.png]
-image::../images/image_secgroup_rule_details.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image4.png[Graphical user interface, application Description automatically generated,width=648,height=289]
 
 [arabic, start=5]
 . In the rule editor window, choose *Save*.
 
-=== Step 5. Test the deployment by using the Cloud Pak for Integration user interface
+=== Step 6. Test the deployment by using the Cloud Pak for Integration user interface
 
 When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to Cloud Pak for Integration web client to verify the deployment, and then use the web client to explore Cloud Pak for Integration features.
 
 [arabic]
 . To access the Cloud Pak for Integration user interface, go to the *CPKIWebClientURL* output of the root stack.
 
-:xrefstyle: short
-[#testStep1]
-.CPKIWebClientURL  output of the root stack
-[link=images/image5.png]
-image::../images/image5.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image5.png[Graphical user interface, text, application, email, Teams Description automatically generated,width=648,height=290]
 
 [arabic, start=2]
 . A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the Cloud Pak for Integration web client login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the Cloud Pak for Integration cluster is self-signed, which causes the unsafe connection warning from your browser.
 . Log in to the Cloud Pak for Integration web client by using the default user admin and the password you supplied when creating the stack.
 . Once you log in, the welcome page is displayed.
 
-:xrefstyle: short
-[#testStep1]
-.Welcome page for Cloud Pak for Integration web client
-[link=images/image6.png]
-image::../images/image6.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image6.png[Graphical user interface Description automatically generated,width=648,height=281]
 
+____
 See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos – Cloud Pak for Integration] for videos and other resources to help you understand the platform features and capabilities.
-
+____
 
 === Step 6. Manage your cluster using the OpenShift Console
 
-
-To access the Cloud Pak for Integration web client, go to the OpenShiftUI output of the root stack*
+____
+[line-through]*To access the Cloud Pak for Integration web client, go to the *OpenShiftUI* output of the root stack*
 
 The default OpenShift administrative user is *kubeadmin.* You obtain the password from the OpenshiftSecret resource created as shown in the figure.
 
-:xrefstyle: short
-[#testStep1]
-.OpenShift secret resource
-[link=images/image7.png]
-image::../images/image7.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image7.png[Graphical user interface, text, application, email Description automatically generated,width=648,height=442]
 
 You retrieve the secret value by clicking *Retrieve secret value* as shown below, and use the value for the OpenShift console administrative password.
+____
 
-
-:xrefstyle: short
-[#testStep1]
-.Retrieve secret value for console password
-[link=images/image8.png]
-image::../images/image8.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image8.png[Graphical user interface, text, application, Teams Description automatically generated,width=648,height=176]
 
 === Step 7. (Optional) Provide Boot Node SSH access
 
@@ -537,40 +518,24 @@ This section describes the steps to modify the BootNodeSecurityGroup inbound rul
 *Note* These steps assume access to the AWS CloudFormation console for the IBM Cloud Pak for Integration deployment.
 
 [arabic]
-. In the list of stacks created, choose the stack named *CloudPakIntegrationStack*.
+. In the list of stacks created, choose the stack named *CloudPakDataStack*.
 
-:xrefstyle: short
-[#testStep1]
-.OpenShift stack
-[link=images/image9.png]
-image::../images/image9.png[image_placeholder,width=320,height=480]
+image:extracted-media/media/image9.png[Graphical user interface, text, application, email Description automatically generated,width=270,height=232]
 
 [arabic, start=2]
 . In the stack window, choose the Resources tab, and select BootNodeSecurityGroup.
 
-:xrefstyle: short
-[#testStep1]
-.Boot node security group
-[link=images/image10.png]
-image::../images/image10.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image10.png[Graphical user interface, text, application, email Description automatically generated,width=648,height=420]
 
 [arabic, start=3]
 . The security group window displays the ingress rules. Click the Inbound tab, and click Edit to bring up the rule editor.
 
-:xrefstyle: short
-[#testStep1]
-.Editing inbound rules
-[link=images/image11.png]
-image::../images/image11.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image11.png[A picture containing graphical user interface, application Description automatically generated,width=648,height=101]
 
 [arabic, start=4]
 . Choose Add Rule, and fill in the rule details. Add the network CIDR for the group of IP addresses that you want to permit SSH access to the boot nodes. To allow any IP address, use 0.0.0.0/0.
 
-:xrefstyle: short
-[#testStep1]
-.Supplying rule details
-[link=images/image12.png]
-image::../images/image12.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image12.png[image,width=648,height=30]
 
 [arabic, start=5]
 . In the rule editor window, choose Save.
@@ -579,15 +544,11 @@ image::../images/image12.png[image_placeholder,width=648,height=439]
 
 The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as in the following Bash instructions:
 
-[arabic, start=1]
+[arabic, start=6]
 . Run the command ssh-add -K <your-key.pem> to store the key in your keychain. On Linux, you might need to omit the -K flag.
 . Retrieve the host name of the Boot Node from the Amazon EC2 console.
 
-:xrefstyle: short
-[#testStep1]
-.Hostname of the boot node
-[link=images/image13.png]
-image::../images/image13.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image13.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=348]
 
 [arabic, start=9]
 . To log in to the bastion host, run ssh -A ec2-user@<bootnode-host-name>.
@@ -611,10 +572,7 @@ ____
 * Run oc nodes to get the current list of nodes
 * Run oc get machineset -n openshift-machine-api to get the machinesets for each Availability zone.
 
-:xrefstyle: short
-[#testStep1]
-[link=images/image14.png]
-image::../images/image14.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image14.png[Text Description automatically generated,width=648,height=93]
 
 * Select the machine set to scale up from the list returned in previous command
 * Edit selected machine set and update replica count as below:
@@ -623,10 +581,7 @@ ____
 oc edit machineset cp4i-pn-nk9dr-worker-eu-west-1a -n openshift-machine-api
 ____
 
-:xrefstyle: short
-[#testStep1]
-[link=images/image15.png]
-image::../images/image15.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image15.png[Text Description automatically generated,width=648,height=216]
 
 * An AWS instance will be created and Desired count and current count will get updated to replica value.
 * After few mins once the node joins the cluster ready and available count will be updated to replica value.
@@ -641,17 +596,9 @@ image::../images/image15.png[image_placeholder,width=648,height=439]
 
 You can browse the various services that are available for use by navigating to the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Cloud Pak for Integration Platform Navigator].
 
-:xrefstyle: short
-[#testStep1]
-.Capabilities catalog page in Cloud Pak for Integration
-[link=images/image16.png]
-image::../images/image16.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image16.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=295]
 
-:xrefstyle: short
-[#testStep1]
-.Runtimes catalog page in Cloud Pak for Integration
-[link=images/image17.png]
-image::../images/image17.png[image_placeholder,width=648,height=439]
+image:extracted-media/media/image17.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=206]
 
 As part of the Quick Start installation, the Platform Navigator is installed by default, giving you the ability to choose which of the capabilities and runtimes you wish to create after the deployment has completed.
 
@@ -660,10 +607,10 @@ As part of the Quick Start installation, the Platform Navigator is installed by 
 [cols=",,",options="header",]
 |===
 |Service Name |CPU cores( vCPUs) |Memory
-|*Asset Repository |0.5 |640MG
-|*Operations Dashboard |7 |13GB
+|Asset Repository |0.5 |640MG
+|Operations Dashboard |7 |13GB
 |*API Lifecycle and Management* |12 |48GB
-|*Messaging (queue manager)* |1 |1GB
+|*Messaging (Queue Manager)* |1 |1GB
 |*Event Streaming* |8.2 |8.2GB
 |*Application Integration Dashboard* |1 |4GB
 |*Application Integration Designer* |1 |5.75GB
@@ -692,8 +639,30 @@ Installing capabilities as standalone installation
 Installation from Platform Navigator UI
 ____
 
-Find that latest guide on this link
-https://www.ibm.com/support/knowledgecenter/SSGT7J_20.2/install/deployments.html
+* Log in to the Platform Navigator UI and click   *Capabilities,* then click *Create capability.*
+
+image:extracted-media/media/image18.png[Graphical user interface, application Description automatically generated,width=648,height=168]
+
+* Select a capability to create, for example, *Operations Dashboard,*.   and *click Create.*
+
+image:extracted-media/media/image19.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=293]
+
+* Select *Select type,* then click the tile that suits your use case, either *Development* or *Production.* Click *Next.* 
+
+____
+image:extracted-media/media/image20.png[Graphical user interface, application Description automatically generated,width=648,height=226]
+____
+
+* Select *Configuration,* then enter the appropriate values in the configuration form. Click *Create.* +
+image:extracted-media/media/image21.png[Graphical user interface, application, Teams Description automatically generated,width=648,height=497]
+* The capability displays as *Pending* in the *Status* column.Pending Status  +
+image:extracted-media/media/image22.png[A picture containing table Description automatically generated,width=648,height=159]
+
+To trace installation progress, go to the OpenShift admin console and click *Events* in the left navigation menu, as shown: +
+image:extracted-media/media/image23.png[Graphical user interface, application Description automatically generated,width=648,height=235]
+
+* In the Platform Navigator UI, when the capability displays *as* Ready in *the* Status column, it is fully installed.  +
+image:extracted-media/media/image24.png[A picture containing graphical user interface Description automatically generated,width=648,height=158] 
 
 ____
 Installation from AWS bootnode
@@ -760,26 +729,14 @@ For example:
 ./release-ar.sh --n integration -r assets-repo -a ocs-storagecluster-cephfs -c ocs-storagecluster-cephfs -p
 ____
 
-* The capability now displays as *Pending* in the *Status* column.  
+* The capability now displays as *Pending* in the *Status* column.  +
+image:extracted-media/media/image22.png[A picture containing table Description automatically generated,width=648,height=159]
+* To trace installation progress, go to the OpenShift admin console and click *Events* in the left navigation menu, as shown: +
+image:extracted-media/media/image23.png[Graphical user interface, application Description automatically generated,width=624,height=226]
 
-:xrefstyle: short
-[#testStep1]
-[link=images/image25.png]
-image::../images/image25.png[image_placeholder,width=648,height=439]
-
-* To trace installation progress, go to the OpenShift admin console and click *Events* in the left navigation menu, as shown: 
-
-:xrefstyle: short
-[#testStep1]
-[link=images/image26.png]
-image::../images/image26.png[image_placeholder,width=648,height=439]
-
-* In the Platform Navigator UI, when the capability displays as *Ready* in the *Status* column, it is fully installed.  
-
-:xrefstyle: short
-[#testStep1]
-[link=images/image27.png]
-image::../images/image27.png[image_placeholder,width=648,height=439]
-
+____
+In the Platform Navigator UI, when the capability displays as *Ready* in the *Status* column, it is fully installed.  +
+image:extracted-media/media/image24.png[A picture containing graphical user interface Description automatically generated,width=648,height=158] 
+____
 
 To get information on other services that are available, see the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deployment Component Products].

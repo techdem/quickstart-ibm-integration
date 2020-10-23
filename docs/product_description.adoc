@@ -1,3 +1,5 @@
+== Cloud Pak for Integration on AWS
+
 IBM Cloud Pak for Integration brings together IBM’s market-leading integration capabilities to support a broad range of integration styles and use cases as part of your journey to the cloud. It provides a simple, complete solution that enables clients to leverage the latest agile integration practices, simplify the management of their integration architecture, and reduce cost while driving digital transformation across their organizations. 
 
  
