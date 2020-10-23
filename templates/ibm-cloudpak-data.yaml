@@ -306,7 +306,7 @@ Parameters:
     NoEcho: 'true'
   LicenseAgreement:
     Description: >-
-      I have read and agree to the license terms for IBM Cloud Pak for Integration (https://ibm.biz/BdqyB2).
+      I have read and agree to the license terms for IBM Cloud Pak for Integration (http://ibm.biz/cp4i-license).
     Type: String
     Default: '-' 
     AllowedValues:
