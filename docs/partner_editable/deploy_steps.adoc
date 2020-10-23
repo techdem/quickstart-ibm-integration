@@ -543,7 +543,7 @@ This section describes the steps to modify the BootNodeSecurityGroup inbound rul
 [#testStep1]
 .OpenShift stack
 [link=images/image9.png]
-image::../images/image9.png[image_placeholder,width=320,height=480]
+image::../images/image9.png[image_placeholder,width=618,height=532]
 
 [arabic, start=2]
 . In the stack window, choose the Resources tab, and select BootNodeSecurityGroup.
@@ -783,3 +783,27 @@ image::../images/image27.png[image_placeholder,width=648,height=439]
 
 
 To get information on other services that are available, see the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deployment Component Products].
+
+____
+Changing Platform Navigator Credentials
+____
+
+=== Changing Platform Navigator Credentials
+
+* Login to your AWS bootnode server.
+* Navigate to scripts directory.
+
+cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
+
+*  Run the `change-cs-credentials.sh` script with the desired credentials
+
+
+
+./change-cs-credentials.sh -u $\{username} -p $\{password}
+  
+the username has a default value of `admin` so if you want to keep the username and only change the password you can skip the `-u` flag
+
+
+./change-cs-credentials.sh -p $\{password}
+
+Please note that changing the credentials requires using `cloudctl` cli, but the script will automatically download it from the deployed common services on your openshift cluster and use it , so it doesn't require to have `cloudclt` pre installed
