@@ -4,12 +4,12 @@ IBM Cloud Pak for Integration brings together IBM’s market-leading integration
 
 The Cloud Pak includes the following capabilities to meet all your integration needs, delivered as a single integrated platform that works seamlessly together in production:
 
-* *API Connect* - Create, secure, manage, share and monetize APIs across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. 
-* *App Connect Enterprise* - Integrate all of your business data and applications more quickly and easily across any cloud, from the simplest SaaS application to the most complex systems — without worrying about mismatched sources, formats or standards. 
-* *MQ Advanced* - Simplify, accelerate and facilitate the reliable exchange of data with a flexible and security-rich messaging solution that’s trusted by some of the world’s most successful enterprises. Ensure you receive the information you need, when you need it — and receive it only once. 
-* *Event Streams* - Use Apache Kafka to deliver messages more easily and reliably and to react to events in real time. Provide more personalized customer experiences by responding to events before the moment passes. 
-* *DataPower Gateway* - Create persistent, security-rich connections between your on-premises and cloud environments. Quickly set up and manage gateways, control access on a per-resource basis, configure TLS encryption and mutual authentication, and monitor all of your traffic. 
-* *Aspera High Speed Transfer Server* - Send large files and data sets virtually anywhere, reliably, and at maximum speed. Accelerate collaboration and meet the demands of complex global teams, without compromising performance or security. 
+* *API Lifecycle Management* - Create, secure, publish, discover and manage APIs across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. 
+* *Application and Data Integration* - Integrate all of your business data and applications more quickly and easily across any cloud, from the simplest SaaS application to the most complex systems — without worrying about mismatched sources, formats or standards. 
+* *Messaging* - Simplify, accelerate and facilitate the reliable exchange of data with a flexible and security-rich messaging solution that’s trusted by some of the world’s most successful enterprises. Ensure you receive the information you need, when you need it — and receive it only once. 
+* *Event Streams* - Use Apache Kafka to deliver messages more easily and reliably and to react to events in real time. Provide more engaging customer experiences by responding to events before the moment passes. 
+* *Secure Gateway* - Create persistent, security-rich connections between your on-premises and cloud environments. Quickly set up and manage gateways, control access on a per-resource basis, configure TLS encryption and mutual authentication, and monitor all of your traffic. 
+* *High Speed Data Transfer* - Send large files and data sets virtually anywhere, reliably, and at maximum speed. Accelerate collaboration and meet the demands of complex global teams, without compromising performance or security. 
 * *Operations Dashboard* - Enable cross-component transaction tracing to allow troubleshooting and investigating errors and latency issues across integration capabilities.
 
  

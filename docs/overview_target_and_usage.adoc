@@ -1,3 +1,0 @@
-== Overview
-
-This Quick Start deployment guide provides step-by-step instructions for deploying IBM Cloud Pak for Integration on a Red Hat OpenShift Container Platform 4.4.22 cluster on the AWS Cloud. With this Quick Start, you can automatically deploy a multi-master production instance of Cloud Pak for Integration.
