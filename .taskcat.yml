@@ -33,4 +33,5 @@ tests:
       CP4IDeploymentLogsBucketName: override
     regions:  
     - ca-central-1
+    - eu-west-1
     template: templates/ibm-cloudpak-root.yaml
