@@ -35,12 +35,24 @@ fi
 
 LOGFILE="${PWD}/logs/${SCRIPT%.*}.log"
 
+## Downloading OpenShift Binaries
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.4.25/openshift-client-linux.tar.gz
+wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.4.25/openshift-install-linux.tar.gz
+#
+tar xvf openshift-client-linux.tar.gz
+tar xvf openshift-install-linux.tar.gz
+cp oc /usr/bin/
+cp kubectl /usr/bin/
 
 mkdir -p artifacts
 mkdir -p  templates
 chmod +x /ibm/cp4i_install.py
 chmod +x /ibm/destroy.sh
 chmod +x /ibm/cp4i-deployment/cp4i-install.sh
+chmod +x /usr/bin/oc
+chmod +x /usr/bin/kubectl
+chmod +x /ibm/openshift-install
+
 echo $HOME
 export KUBECONFIG=/root/.kube/config
 echo $KUBECONFIG

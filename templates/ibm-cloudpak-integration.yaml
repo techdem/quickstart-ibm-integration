@@ -292,8 +292,8 @@ Parameters:
     Description: The version of Cloud Pak for Integration to be deployed. Currently only 2020.2 is supported.
     Type: String
     AllowedValues:
-      - 2020.2
-    Default: 2020.2
+      - 2020.3
+    Default: 2020.3
   APIUsername:
     Description: >-
        The IBM Cloud Pak for Integration user name to access IBM Container Registry.
@@ -471,41 +471,41 @@ Mappings:
       COREOS: ami-0633b392e8eff25e7
 
 
-  AWSRegionS3Bucket:
-    ap-northeast-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-1
-    ap-northeast-2:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-2
-    ap-northeast-3:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-3
-    ap-south-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-south-1
-    ap-southeast-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-southeast-1
-    ap-southeast-2:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ap-southeast-2
-    ca-central-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-ca-central-1
-    eu-central-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-eu-central-1
-    eu-north-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-eu-north-1
-    eu-west-1:
-      ICP4IArchiveBucket: aws-quickstart-ocp
-    eu-west-2:
-      ICP4IArchiveBucket: aws-quickstart-e2e
-    eu-west-3:
-      ICP4IArchiveBucket: ibm-cloud-private-data-eu-west-3
-    sa-east-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-sa-east-1
-    us-east-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-us-east-1
-    us-east-2:
-      ICP4IArchiveBucket: ibm-cloud-private-data-us-east-2
-    us-west-1:
-      ICP4IArchiveBucket: ibm-cloud-private-data-us-west-1
-    us-west-2:
-      ICP4IArchiveBucket: ibm-cloud-private-data-us-west-2
+#  AWSRegionS3Bucket:
+#    ap-northeast-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-1
+#    ap-northeast-2:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-2
+#    ap-northeast-3:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-northeast-3
+#    ap-south-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-south-1
+#    ap-southeast-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-southeast-1
+#    ap-southeast-2:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ap-southeast-2
+#    ca-central-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-ca-central-1
+#    eu-central-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-eu-central-1
+#    eu-north-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-eu-north-1
+#    eu-west-1:
+#      ICP4IArchiveBucket: cftests
+#    eu-west-2:
+#      ICP4IArchiveBucket: aws-quickstart-e2e
+#    eu-west-3:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-eu-west-3
+#    sa-east-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-sa-east-1
+#    us-east-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-us-east-1
+#    us-east-2:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-us-east-2
+#    us-west-1:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-us-west-1
+#    us-west-2:
+#      ICP4IArchiveBucket: ibm-cloud-private-data-us-west-2
 
 
 Rules:
@@ -765,7 +765,6 @@ Resources:
             export CP4I_SECRET='${CP4ISecret}'
             export OCP_SECRET='${OpenshiftSecret}'
             export PN_SECRET='${PlatformNavigatorSecret}'
-            export ICP4IArchiveBucket='${ICP4IArchiveBucket}'
             export ICP4IInstallationCompletedURL='${ICP4IInstallationCompletedHandle}'
             mkdir -p /quickstart
             mkdir -p /ibm
@@ -774,7 +773,7 @@ Resources:
             ./quickstart/bootstrap.sh
           -
             AMI_ID: !FindInMap [AWSAMIRegionMap, !Ref "AWS::Region", COREOS]
-            ICP4IArchiveBucket: !FindInMap [AWSRegionS3Bucket, !Ref "AWS::Region", ICP4IArchiveBucket]
+            # ICP4IArchiveBucket: !FindInMap [AWSRegionS3Bucket, !Ref "AWS::Region", ICP4IArchiveBucket]
             # EFSID:  !If [CreateEFS, !GetAtt ClusterSharedStorage.Outputs.EFSFileSystemId, ""]
             # EFSDNSName: !If [CreateEFS, !GetAtt ClusterSharedStorage.Outputs.EFSDNSName,""]
 
@@ -798,12 +797,11 @@ Resources:
                     print("Run unsubscribe script")
                     ssm = boto3.client('ssm',region_name=os.environ['Region'])
                     instanceID = os.environ['BootNode']
-                    storage = os.environ['Storage']
                     stackname = os.environ['StackName']
                     print instanceID
                     response = ssm.send_command(Targets=[{"Key":"instanceids","Values":[instanceID]}],
                             DocumentName="AWS-RunShellScript",
-                            Parameters={"commands":["/ibm/destroy.sh %s %s" %(storage,stackname)],
+                            Parameters={"commands":["/ibm/destroy.sh %s" %(stackname)],
                                         "executionTimeout":["1200"],
                                         "workingDirectory":["/ibm"]},
                             Comment="Execute script in uninstall openshift",

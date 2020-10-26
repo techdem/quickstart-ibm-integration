@@ -1,11 +1,13 @@
 project:
-  name: aws-ocp-deployment
+  name: quickstart-ibm-integration
   shorten_stack_name: true
-  s3_regional_buckets: false
+  s3_regional_buckets: true
   package_lambda: false
-  s3_bucket: aws-quickstart-ocp
+  s3_bucket: ''
   regions:
   - eu-west-1
+  - eu-west-2
+  - ca-central-1
   
 tests:
   cp4i:
@@ -18,17 +20,17 @@ tests:
       KeyPairName: override
       NumberOfMaster: '3'
       NumberOfCompute: '3'
-      ClusterName: cp4i
+      ClusterName: cp4i-$[taskcat_random-string]
       RedhatPullSecret: override
       APIKey: override
       APIUsername: override
       LicenseAgreement: I agree
       Namespace: integration
       APILM: 'True'
-      QSS3BucketName: aws-quickstart-ocp
+      QSS3BucketName: $[taskcat_autobucket]
       QSS3BucketRegion: $[taskcat_current_region]
-      QSS3KeyPrefix: quickstart-ibm-cp-for-integration/
+      QSS3KeyPrefix: quickstart-ibm-integration/
       CP4IDeploymentLogsBucketName: override
     regions:  
-    - eu-west-1
+    - ca-central-1
     template: templates/ibm-cloudpak-root.yaml
