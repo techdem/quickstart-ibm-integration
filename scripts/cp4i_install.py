@@ -415,15 +415,9 @@ class CP4IntegrationInstall(object):
             self.updateTemplateFile(autoScalerFile, '${az3}', self.zones[2])
             self.updateTemplateFile(healthcheckFile, '${az2}', self.zones[1])
             self.updateTemplateFile(healthcheckFile, '${az3}', self.zones[2])
-        
-        # TR.info(methodName,"Download Openshift Container Platform")
-        # self.getS3Object(bucket=self.cp4ibucketName, s3Path="4.4.25/openshift-install", destPath="/ibm/openshift-install")
-        # self.getS3Object(bucket=self.cp4ibucketName, s3Path="4.4.25/oc", destPath="/usr/bin/oc")
-        # self.getS3Object(bucket=self.cp4ibucketName, s3Path="4.4.25/kubectl", destPath="/usr/bin/kubectl")
-        # os.chmod("/usr/bin/oc", stat.S_IEXEC)
-        # os.chmod("/usr/bin/kubectl", stat.S_IEXEC)
-        # TR.info(methodName,"Initiating installation of Openshift Container Platform")
-        # os.chmod("/ibm/openshift-install", stat.S_IEXEC)
+
+        TR.info(methodName,"Initiating installation of Openshift Container Platform")
+        os.chmod("/ibm/openshift-install", stat.S_IEXEC)
         install_ocp = "sudo ./openshift-install create cluster --dir=/ibm/installDir --log-level=debug"
         TR.info(methodName,"Output File name: %s"%icp4iInstallLogFile)
         try:
@@ -653,12 +647,11 @@ class CP4IntegrationInstall(object):
                 self.__init(self.stackId,self.stackName, icp4iInstallLogFile)
                 self.zones = Utilities.splitString(self.AvailabilityZones)
                 TR.info(methodName," AZ values %s" % self.zones)
+
                 TR.info(methodName,"RedhatPullSecret %s" %self.RedhatPullSecret)
-               
                 secret = self.RedhatPullSecret.split('/',1)
                 TR.info(methodName,"Pull secret  %s" %secret)  
                 self.pullSecret = "/ibm/pull-secret"
-                #self.getS3Object(bucket=secret[0], s3Path=secret[1], destPath=self.pullSecret)
                 s3_cp_cmd = "aws s3 cp "+self.RedhatPullSecret+" "+self.pullSecret
                 TR.info(methodName,"s3 cp cmd %s"%s3_cp_cmd)
                 call(s3_cp_cmd, shell=True,stdout=icp4iInstallLogFile)
@@ -677,7 +670,7 @@ class CP4IntegrationInstall(object):
 
                 install_cp4i = ("sudo ./cp4i-deployment/cp4i-install.sh  -n " +  self.Namespace + " -k " + self.apiKey +
                                 " -1 " + self.APILM + " -2 " + self.AIDB + " -3 " + self.AIDE + " -4 " + self.OD + " -5 " + self.AR +
-                                " -6 " + self.MQ + " -7 " + self.ES + " -8 " + self.GW + " -9 " + self.HST + " | tee -a cp4i-logs.txt")
+                                " -6 " + self.MQ + " -7 " + self.ES + " -8 " + self.GW + " -9 " + self.HST + " -p " + self.password +" | tee -a cp4i-logs.txt")
                 
                 try:
                     process = Popen(install_cp4i,shell=True,stdout=icp4iInstallLogFile,stderr=icp4iInstallLogFile,close_fds=True)
@@ -700,13 +693,16 @@ class CP4IntegrationInstall(object):
 
                 self.exportResults(self.stackName+"-CP4IURL", "https://"+self.cp4iURL, icp4iInstallLogFile)
 
-                get_cp4i_password_cmd = "oc get secrets -n ibm-common-services platform-auth-idp-credentials -ojsonpath='{.data.admin_password}' | base64 --decode && echo """
-                TR.info(methodName, "Get CP4I Password")
-                try:
-                    self.cp4iPassword = check_output(['bash','-c', get_cp4i_password_cmd])
-                    TR.info(methodName, "CP4I Password retrieved %s"%self.cp4iPassword)
-                except CalledProcessError as e:
-                    TR.error(methodName,"command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+                if(self.password=="NotProvided"):
+                    get_cp4i_password_cmd = "oc get secrets -n ibm-common-services platform-auth-idp-credentials -ojsonpath='{.data.admin_password}' | base64 --decode && echo """
+                    TR.info(methodName, "Get CP4I Password")
+                    try:
+                        self.cp4iPassword = check_output(['bash','-c', get_cp4i_password_cmd])
+                        TR.info(methodName, "CP4I Password retrieved %s"%self.cp4iPassword)
+                    except CalledProcessError as e:
+                        TR.error(methodName,"command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))
+                else:
+                    self.cp4iPassword = self.password
 
                 self.updateSecret(icp4iInstallLogFile)
             #endWith    

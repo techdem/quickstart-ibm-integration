@@ -50,6 +50,7 @@ Metadata:
           - APIKey
           - LicenseAgreement
           - Namespace
+          - AdminPassword
           - AR
           - OD
           - APILM
@@ -121,6 +122,8 @@ Metadata:
         default: License agreement
       Namespace:
         default: OpenShift project
+      AdminPassword:
+        default: Cloud Pak for Integration UI password
       AR:
         default: Asset Repository
       OD:
@@ -293,7 +296,7 @@ Parameters:
     Description: Update this value if Storage type selected is OCS. The EC2 instance type for the OpenShift Container Storage instances.
     Type: String
   RedhatPullSecret:
-    Description: S3 path of OpenShift Installer Provisioned Infrastructure pull secret(e.g., s3://my-bucket/path/to/pull-secret).
+    Description: Your Red Hat Network (RHN) pull secret(e.g., s3://my-bucket/path/to/portworxspec.yaml).
     Type: String
   CP4IVersion:
     Description: The version of Cloud Pak for Integration to be deployed. Currently only 2020.3 is supported.
@@ -313,7 +316,7 @@ Parameters:
     NoEcho: 'true'
   LicenseAgreement:
     Description: >-
-      I have read and agree to the license terms for IBM Cloud Pak for Integration (https://ibm.biz/BdqyB2).
+      I have read and agree to the license terms for IBM Cloud Pak for Integration (http://ibm.biz/cp4i-license).
     Type: String
     Default: '-' 
     AllowedValues:
@@ -325,6 +328,12 @@ Parameters:
       The OpenShift project that will be created for deploying Cloud Pak for Integration. It can be any lowercase string.
     Type: String
     Default: "integration"
+  AdminPassword:
+    Description: The password for the Cloud Pak for Integration Platform Navigator. The password must contain at least 8 characters, including letters (with a minimum of one capital letter), numbers, and symbols. If no password is provided the installer will generate one that can be retrieved from 'PlatformNavigatorSecret'.
+    Type: String
+    MinLength: '8'
+    AllowedPattern: ^[^ \\']+$
+    Default: "NotProvided"
   AR:
     Description: >-
        Choose True to install an example instance of the Asset Repository capability.
@@ -517,6 +526,7 @@ Resources:
         APIKey: !Ref 'APIKey'
         LicenseAgreement: !Ref 'LicenseAgreement'
         Namespace: !Ref 'Namespace'
+        AdminPassword: !Ref 'AdminPassword'
         AR: !Ref 'AR'
         OD: !Ref 'OD'
         APILM: !Ref 'APILM'
