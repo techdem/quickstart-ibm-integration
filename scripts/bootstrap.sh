@@ -17,6 +17,15 @@ qs_retry_command 10 yum install -y ./amazon-ssm-agent.rpm
 systemctl start amazon-ssm-agent
 systemctl enable amazon-ssm-agent
 rm -f ./amazon-ssm-agent.rpm
+
+qs_retry_command 10 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.4.29/openshift-client-linux.tar.gz
+tar xvf openshift-client-linux.tar.gz
+mv ./oc /usr/bin/
+mv ./kubectl /usr/bin
+
+qs_retry_command 10 wget https://mirror.openshift.com/pub/openshift-v4/clients/ocp/4.4.29/openshift-install-linux.tar.gz
+tar xvf openshift-install-linux.tar.gz
+mv ./openshift-install /ibm/
 cd -
 
 aws s3 cp  ${CP4I_QS_S3URI}scripts/  /ibm/ --recursive

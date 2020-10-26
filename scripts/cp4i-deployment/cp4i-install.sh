@@ -21,7 +21,7 @@
 #
 
 # initial variables
-namespace='cp4i'
+namespace='integration'
 maxWaitTime=1800
 maxTrials=2
 currentTrial=1
@@ -33,16 +33,17 @@ capabilityAPPConnectDashboard="false";
 capabilityAPPConenctDesigner="false";
 capabilityAssetRepository="false";
 capabilityOperationsDashboard="false";
-deploymentScriptsPath= "$(pwd)/capabilities-runtimes-scripts";
+deploymentScriptsPath="$(pwd)/cp4i-deployment/capabilities-runtimes-scripts";
 
 storageClass="ocs-storagecluster-cephfs"
 runtimeMQ="false";
 runtimeKafka="false";
 runtimeAspera="false";
 runtimeDataPower="false";
+platformPassword="";
 
 # get cli input flags
-while getopts 'w:t:n:k:c:a:1:2:3:4:5:6:7:8:9:' flag; do
+while getopts 'w:t:n:k:c:a:1:2:3:4:5:6:7:8:9:p:' flag; do
   case "${flag}" in
   
     n) namespace="${OPTARG}" ;;
@@ -60,6 +61,8 @@ while getopts 'w:t:n:k:c:a:1:2:3:4:5:6:7:8:9:' flag; do
     7) runtimeKafka=$(echo "${OPTARG}" | awk '{print tolower($0)}');;
     8) runtimeAspera=$(echo "${OPTARG}" | awk '{print tolower($0)}');;
     9) runtimeDataPower=$(echo "${OPTARG}" | awk '{print tolower($0)}');;
+    p) platformPassword="${OPTARG}" ;;
+
 
 
   esac
@@ -73,6 +76,7 @@ echo "DEBUG: runtimeMQ: ${runtimeMQ}"
 echo "DEBUG: runtimeKafka: ${runtimeKafka}"
 echo "DEBUG: runtimeAspera: ${runtimeAspera}"
 echo "DEBUG: runtimeDataPower: ${runtimeDataPower}"
+
 
 
 # check for missing mandatory namespace
@@ -565,6 +569,15 @@ fi
 
 # clean up
 cleanSubscriptions
+
+
+if [[ ! -z "$platformPassword" ]]
+then
+      echo "INFO: Changing Platform Password"
+  sh ${deploymentScriptsPath}/change-cs-credentials.sh -p ${platformPassword}
+    
+fi
+
 
 echo "INFO: CP4I Installed Successfully on project ${namespace}"
 

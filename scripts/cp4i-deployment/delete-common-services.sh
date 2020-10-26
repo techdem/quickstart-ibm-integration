@@ -13,6 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
+scriptsPath="$(pwd)/cp4i-deployment";
+
 function msg() {
   printf '%b\n' "$1"
 }
@@ -143,4 +146,4 @@ oc delete ValidatingWebhookConfiguration -l 'app=ibm-cert-manager-webhook' --ign
 title "Deleting unavailable apiservice"
 delete_apiservice
 title "Deleting namespace ${namespace}"
-sh ./delete-project.sh -n ${namespace} 
+sh ${scriptsPath}/delete-project.sh -n ${namespace} 

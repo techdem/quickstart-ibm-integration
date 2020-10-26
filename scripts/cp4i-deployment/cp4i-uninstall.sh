@@ -1,4 +1,6 @@
 JOB_NAMESPACE="integration"
+scriptsPath="$(pwd)/cp4i-deployment";
+
 while getopts 'n:v' flag; do
   case "${flag}" in
   
@@ -24,5 +26,5 @@ oc delete OperatorGroup -n ${JOB_NAMESPACE} ${JOB_NAMESPACE}-og
 # Deleting the ibm-entitlement-key secret
 echo "INFO: Deleting ibm-entitlement-key secret"
 oc delete secret -n ${JOB_NAMESPACE} ibm-entitlement-key 
-sh ./delete-project.sh -n ${JOB_NAMESPACE};
+sh ${scriptsPath}/delete-project.sh -n ${JOB_NAMESPACE};
 echo "Uninstall is complete"

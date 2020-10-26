@@ -2,6 +2,7 @@
 
 namespace='integration'
 removeCommonServices=true
+scriptsPath="$(pwd)/cp4i-deployment";
 
 while getopts 'cn:v' flag; do
   case "${flag}" in
@@ -67,7 +68,7 @@ oc delete  secret -n ${namespace} ibm-entitlement-key
 if [[ $removeCommonServices == true ]]
 then
 echo "removing common services"
-sh ./delete-common-services.sh
+sh ${scriptsPath}/delete-common-services.sh
 fi
-sh ./delete-project.sh -n ${namespace};
+sh ${scriptsPath}/delete-project.sh -n ${namespace};
 
