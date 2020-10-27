@@ -164,31 +164,6 @@ class CP4IntegrationInstall(object):
         TR.info(methodName,"Elapsed time (hh:mm:ss): %d:%02d:%02d for %s" % (eth,etm,ets,text))
     #endDef
 
-    def getToken(self,icp4iInstallLogFile):
-        """
-        method to get sa token to be used to push and pull from local docker registry
-        """
-        methodName = "getToken"
-        create_sa_cmd = "oc create serviceaccount cp4itoken"
-        TR.info(methodName,"Create service account cp4itoken %s"%create_sa_cmd)
-        try:
-            retcode = call(create_sa_cmd,shell=True, stdout=icp4iInstallLogFile)
-            TR.info(methodName,"Created service account cp4itoken %s"%retcode)
-        except CalledProcessError as e:
-            TR.error(methodName,"command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))    
-
-        addrole_cmd = "oc policy add-role-to-user admin system:serviceaccount:"+self.Namespace+":cp4itoken"
-        TR.info(methodName," Add role to service account %s"%addrole_cmd)
-        try:
-            retcode = call(addrole_cmd,shell=True, stdout=icp4iInstallLogFile)
-            TR.info(methodName,"Role added to service account %s"%retcode)
-        except CalledProcessError as e:
-            TR.error(methodName,"command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))    
-
-        get_token_cmd = "oc serviceaccounts get-token cp4itoken"
-        TR.info(methodName,"Retrieve token from service account %s"%get_token_cmd)
-        return check_output(['bash','-c', get_token_cmd])
-    #endDef    
     def updateTemplateFile(self, source, placeHolder, value):
         """
         method to update placeholder values in templates
@@ -593,12 +568,12 @@ class CP4IntegrationInstall(object):
     def updateSecret(self, icp4iInstallLogFile):
         methodName = "updateSecret"
         TR.info(methodName,"Start updateSecretOpenshift %s"%self.ocpSecret)
-        secret_update_oc = '{"ocpPassword":'+self.ocpassword+'}'
+        secret_update_oc = '{"ocpPassword": "' + self.ocpassword + '"}'
         response = self.secretsmanager.update_secret(SecretId=self.ocpSecret,SecretString=secret_update_oc)
         TR.info(methodName,"Updated secret for %s with response %s"%(self.ocpSecret, response))
 
         TR.info(methodName,"Start updateSecretPlatformNavigator %s"%self.pnSecret)
-        secret_update_pn = '{"adminPassword":'+self.cp4iPassword+'}'
+        secret_update_pn = '{"adminPassword": "' + self.cp4iPassword + '"}'
         response = self.secretsmanager.update_secret(SecretId=self.pnSecret,SecretString=secret_update_pn)
         TR.info(methodName,"Updated secret for %s with response %s"%(self.pnSecret, response))
 
@@ -668,9 +643,14 @@ class CP4IntegrationInstall(object):
                 storageend = Utilities.currentTimeMillis()
                 self.printTime(storagestart, storageend, "Installing storage")
 
-                install_cp4i = ("sudo ./cp4i-deployment/cp4i-install.sh  -n " +  self.Namespace + " -k " + self.apiKey +
+                if(self.password=="NotProvided"):
+                    install_cp4i = ("sudo ./cp4i-deployment/cp4i-install.sh  -n " +  self.Namespace + " -k " + self.apiKey +
                                 " -1 " + self.APILM + " -2 " + self.AIDB + " -3 " + self.AIDE + " -4 " + self.OD + " -5 " + self.AR +
-                                " -6 " + self.MQ + " -7 " + self.ES + " -8 " + self.GW + " -9 " + self.HST + " -p " + self.password +" | tee -a cp4i-logs.txt")
+                                " -6 " + self.MQ + " -7 " + self.ES + " -8 " + self.GW + " -9 " + self.HST + " | tee -a cp4i-logs.txt")
+                else:
+                    install_cp4i = ("sudo ./cp4i-deployment/cp4i-install.sh  -n " +  self.Namespace + " -k " + self.apiKey +
+                                    " -1 " + self.APILM + " -2 " + self.AIDB + " -3 " + self.AIDE + " -4 " + self.OD + " -5 " + self.AR +
+                                    " -6 " + self.MQ + " -7 " + self.ES + " -8 " + self.GW + " -9 " + self.HST + " -p " + self.password + " | tee -a cp4i-logs.txt")
                 
                 try:
                     process = Popen(install_cp4i,shell=True,stdout=icp4iInstallLogFile,stderr=icp4iInstallLogFile,close_fds=True)
@@ -683,7 +663,7 @@ class CP4IntegrationInstall(object):
 
                 self.exportResults(self.stackName+"-OpenshiftURL", "https://"+self.openshiftURL, icp4iInstallLogFile)
 
-                get_cp4i_route_cmd = "oc get route -n " + self.Namespace + " | grep '" + self.Namespace + "' | awk '{print $2}'"
+                get_cp4i_route_cmd = "oc get route -n " + self.Namespace + " | grep 'navigator-pn' | awk '{print $2}'"
                 TR.info(methodName, "Get CP4I URL")
                 try:
                     self.cp4iURL = check_output(['bash','-c', get_cp4i_route_cmd])
