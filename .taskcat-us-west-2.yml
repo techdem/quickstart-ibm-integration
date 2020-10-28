@@ -1,0 +1,35 @@
+project:
+  name: quickstart-ibm-cp-for-security
+  shorten_stack_name: true
+  s3_regional_buckets: false
+  package_lambda: false
+  s3_bucket: aws-quickstart-us
+  regions:
+  - us-west-2
+  
+tests:
+  cp4s:
+    parameters:
+      NumberOfAZs: '1'
+      AvailabilityZones: $[taskcat_genaz_1]
+      VPCCIDR: 10.0.0.0/16
+      BootNodeAccessCIDR: override
+      DomainName: override
+      CPSFQDN: override
+      KeyPairName: override
+      NumberOfMaster: '3'
+      NumberOfCompute: '3'
+      AdminPassword: override
+      ClusterName: cp4s-delta
+      EnableFips: 'True'
+      RedhatPullSecret: override
+      APIKey: override
+      APIUsername: override
+      LicenseAgreement: I agree
+      QSS3BucketName: aws-quickstart-us
+      QSS3BucketRegion: $[taskcat_current_region]
+      QSS3KeyPrefix: quickstart-ibm-cp-for-security/
+      CP4SDeploymentLogsBucketName: override
+    regions:  
+    - us-west-2
+    template: templates/ibm-cloudpak-root.yaml
