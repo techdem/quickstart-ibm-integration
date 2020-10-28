@@ -36,9 +36,9 @@ configuration.
 
 The {partner-product-short-name} components run as containers on the OpenShift compute nodes, and build on a range of common platform and operational services that underpin all IBM Cloud Paks.
 
-//TODO Update diagram - too small - and provide source
+
 :xrefstyle: short
 [#architecture2]
 .{partner-product-short-name} Services
-[link=images/image2.jpg]
-image::../images/image2.jpg[image_placeholder,width=648,height=439]
+[link=images/image2.png]
+image::../images/image2.png[image_placeholder,width=1978,height=1112]
