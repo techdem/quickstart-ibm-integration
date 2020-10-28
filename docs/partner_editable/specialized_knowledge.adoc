@@ -1,5 +1,6 @@
 This Quick Start assumes basic familiarity with Red Hat OpenShift and Cloud Pak for Integration components and services. 
-//TODO Additional resources section doesn't exist - I suggest removing this line, unless you are planning to add one. ==> If you’re new to Cloud Pak for Integration and Red Hat OpenShift, see the +++Additional resources +++section. 
+If you’re new to Cloud Pak for Integration and Red Hat OpenShift, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/overview.html[{partner-product-short-name} overview^].
+
 For Red Hat OpenShift installation requirements, see https://docs.openshift.com/container-platform/4.4/welcome/index.html[Planning your installation^].
 For {partner-product-short-name} requirements, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/sysreqs.html[System requirements for {partner-product-short-name}^].
 https://access.redhat.com/documentation/en-us/openshift_container_platform/4.4/html/architecture/architecture-rhcos[Red Hat Enterprise Linux CoreOS (RHCOS)^] is used for the OpenShift EC2 instances in this deployment.

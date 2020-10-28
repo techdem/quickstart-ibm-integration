@@ -89,9 +89,8 @@ image::../images/image15.png[image_placeholder,width=648,height=439]
 * An AWS instance will be created and Desired count and current count will get updated to replica value.
 * After few mins once the node joins the cluster ready and available count will be updated to replica value.
 
-//TODO Changed two bullets to one NOTE section. Does that work?
 NOTE: If you choose to scale down your cluster or reduce the number of compute nodes, there is a risk of the cluster becoming unstable because pods will need to be rescheduled. Scaling down the worker nodes is not a recommended option.
-Cluster auto scaler can overrule the scaling activity to maintain the required threshold.
+The cluster auto scaler can overrule the scaling activity to maintain the required threshold.
 
 === {partner-product-short-name} services
 
@@ -127,30 +126,12 @@ As part of the Quick Start installation, the Platform Navigator is installed by 
 |*High Speed Transfers* |4 |4GB
 |===
 
-//TODO Is this valid for CP4I?
-==== Install a Service
 
-* Log in to your boot node server as mentioned in link:#_accessing_the_control_plane_through_the_boot_node[Accessing the control plane through the Boot Node] section.
-* Change to the install directory.
-+
-```
-$ cd /ibm
-```
-+
-* Run these commands in sequence:
-+
-```
-$ ./cpd-linux adm -r ./repo.yaml -a <Service Name> -n <Project Name> --apply
-
-$ ./cpd-linux -c <Storage Class> -r ./repo.yaml -a lite -n <Project Name> --transfer-image-to $(oc get route -n openshift-image-registry | tail -1| awk '\{print $2}')/<Project Name> --target-registry-username $(oc whoami | sed 's/://g') --target-registry-password $( oc serviceaccounts get-token cpdtoken) --cluster-pull-prefix image-registry.openshift-image-registry.svc:5000/<Project Name> -o override.yaml --insecure-skip-tls-verify
-```
-
-//TODO The rest of this level 4 section looks off. Should this be a new Level 4 heading?
-==== Installing capabilities as standalone installation
+==== Installing capabilities
 
 ===== Installation from Platform Navigator UI
 
-Visit https://www.ibm.com/support/knowledgecenter/SSGT7J_20.2/install/deployments.html[Capability and runtime deployment^] to learn more about installing capabilities using Platform Navigator.
+Visit https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deployments.html[Capability and runtime deployment^] to learn more about installing capabilities using Platform Navigator.
 
 ===== Installation from AWS Boot node
 
@@ -274,5 +255,3 @@ the username has a default value of `admin` so if you want to keep the username 
 ./change-cs-credentials.sh -p $\{password}
 ```
 Please note that changing the credentials requires using `cloudctl` cli, but the script will automatically download it from the deployed common services on your openshift cluster and use it , so it doesn't require to have `cloudctl` pre installed
-
-//TODO I removed two Optional sections that showed how to edit security groups to grant additional access.
