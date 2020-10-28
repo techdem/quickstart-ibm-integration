@@ -4,8 +4,7 @@ For Red Hat OpenShift installation requirements, see https://docs.openshift.com/
 For {partner-product-short-name} requirements, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/sysreqs.html[System requirements for {partner-product-short-name}^].
 https://access.redhat.com/documentation/en-us/openshift_container_platform/4.4/html/architecture/architecture-rhcos[Red Hat Enterprise Linux CoreOS (RHCOS)^] is used for the OpenShift EC2 instances in this deployment.
 
-//TODO Add link for this
-For the list of supported versions, see the "{partner-product-short-name} version" parameter.
+For the list of supported versions, see the *{partner-product-name} version* parameter in link:#_parameter_reference[Parameter reference] section.
 Review the https://www.ibm.com/support/pages/ibm-cloud-pak-integration-known-limitations[Known Limitations^] for {partner-product-short-name}.
 
 This Quick Start also assumes familiarity with the OpenShift command line interface and Linux.
