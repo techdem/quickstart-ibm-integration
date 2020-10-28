@@ -130,7 +130,7 @@ As part of the Quick Start installation, the Platform Navigator is installed by 
 //TODO Is this valid for CP4I?
 ==== Install a Service
 
-* Log in to your bootnode server as mentioned in access section. //TODO Make this a link
+* Log in to your boot node server as mentioned in link:#_accessing_the_control_plane_through_the_boot_node[Accessing the control plane through the Boot Node] section.
 * Change to the install directory.
 +
 ```
