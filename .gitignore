@@ -3,6 +3,8 @@ cp4i-deployment/cp4i-subscription.yaml
 cp4i-deployment/operators-group.yaml
 *.txt
 .taskcat-local.yml
+.taskcat-eu-west-2.yml
+.taskcat-us-west-2.yml
 .taskcat_overrides.yml
 .taskcat/
 taskcat_outputs/
