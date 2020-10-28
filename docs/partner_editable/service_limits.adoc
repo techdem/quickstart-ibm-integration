@@ -1,10 +1,16 @@
-== Service Limits
+// Replace the <n> in each row to specify the number of resources used in this deployment. Remove the rows for resources that aren’t used.
+|===
+|Resource |This deployment uses
 
-* For the list of supported versions, see the "Cloud Pak for Integration version" parameter
-* Review the https://www.ibm.com/support/pages/ibm-cloud-pak-integration-known-limitations[Known Limitations] for Cloud Pak for Integration
-
-=== AWS account
-
-If you don’t already have an AWS account, create one at https://aws.amazon.com/[https://aws.amazon.com] by following the on-screen instructions. Part of the sign-up process involves receiving a phone call and entering a PIN using the phone keypad.
-
-Your AWS account is automatically signed up for all AWS services. You are charged only for the services you use.
+// Space needed to maintain table headers
+|VPCs |1
+|Elastic IP addresses |3
+|AWS Identity and Access Management (IAM) security groups |6
+|IAM users |1
+|IAM roles |4
+|Classic Load Balancers |3
+|Network Load Balancers |2
+|i3.large instances |1
+|m5.2xlarge instances |3
+|m5.8xlarge instances |3
+|===

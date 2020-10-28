@@ -1,7 +1,8 @@
-This Quick Start provides the following deployment options:
+// There are generally two deployment options. If additional are required, add them here
 
-* *Deploy Cloud Pak for Integration into a new VPC* (end-to-end deployment). This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, and other infrastructure components, and then deploys Cloud Pak for Integrations into this new VPC.
+This Quick Start provides two deployment options:
 
-* *Deploy Cloud Pak for Integration into an existing VPC*. This option provisions Cloud Pak for Integrations in your existing VPC infrastructure.
+* *Deploy {partner-product-short-name} into a new VPC (end-to-end deployment)*. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, and other infrastructure components. It then deploys {partner-product-short-name} into this new VPC.
+* *Deploy {partner-product-short-name} into an existing VPC*. This option provisions {partner-product-short-name} in your existing AWS infrastructure.
 
-The Quick Start also lets you configure CIDR blocks, instance types, and Cloud Pak for Integration settings, as discussed later in this guide.
+The Quick Start provides separate templates for these options. It also lets you configure Classless Inter-Domain Routing (CIDR) blocks, instance types, and {partner-product-short-name} settings, as discussed later in this guide.

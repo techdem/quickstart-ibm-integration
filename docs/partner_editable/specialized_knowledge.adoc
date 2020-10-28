@@ -1,9 +1,12 @@
-== Planning the deployment
+This Quick Start assumes basic familiarity with Red Hat OpenShift and Cloud Pak for Integration components and services. 
+//TODO Additional resources section doesn't exist - I suggest removing this line, unless you are planning to add one. ==> If you’re new to Cloud Pak for Integration and Red Hat OpenShift, see the +++Additional resources +++section. 
+For Red Hat OpenShift installation requirements, see https://docs.openshift.com/container-platform/4.4/welcome/index.html[Planning your installation^].
+For {partner-product-short-name} requirements, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/sysreqs.html[System requirements for {partner-product-short-name}^].
+https://access.redhat.com/documentation/en-us/openshift_container_platform/4.4/html/architecture/architecture-rhcos[Red Hat Enterprise Linux CoreOS (RHCOS)^] is used for the OpenShift EC2 instances in this deployment.
 
-=== Specialized knowledge
+//TODO Add link for this
+For the list of supported versions, see the "{partner-product-short-name} version" parameter.
+Review the https://www.ibm.com/support/pages/ibm-cloud-pak-integration-known-limitations[Known Limitations^] for {partner-product-short-name}.
 
-This Quick Start assumes basic familiarity with Cloud Pak for Integration components and services. If you’re new to Cloud Pak for Integration and Red Hat OpenShift, see the +++Additional resources +++section. 
+This Quick Start also assumes familiarity with the OpenShift command line interface and Linux.
 
- 
-
-This Quick Start also assumes familiarity with the OpenShift command line interface and Linux, in addition to a moderate level of familiarity with AWS services. If you’re new to AWS, visit the https://aws.amazon.com/getting-started/[+++Getting Started Resource Center+++] and the https://aws.amazon.com/training/[+++AWS Training and Certification website+++] for materials and programs that can help you develop the skills to design, deploy, and operate your infrastructure and applications on the AWS Cloud. 

@@ -1,1 +1,278 @@
+// Add steps as necessary for accessing the software, post-configuration, and testing. Don’t include full usage instructions for your software, but add links to your product documentation for that information.
+//Should any sections not be applicable, remove them
 
+== Test the deployment
+// If steps are required to test the deployment, add them here. If not, remove the heading
+
+When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to {partner-product-short-name} web client to verify the deployment, and then use the web client to explore {partner-product-short-name} features.
+
+. To access the {partner-product-short-name} user interface, go to the *CP4IWebClientURL* output of the root stack as shown in <<cfn_outputs>>.
+. A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the {partner-product-short-name} web client login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the {partner-product-short-name} cluster is self-signed, which causes the unsafe connection warning from your browser.
+. Log in to the {partner-product-short-name} web client by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
+. Once you log in, the welcome page is displayed as shown in <<testStep1>>.
++
+:xrefstyle: short
+[#testStep1]
+.Welcome page for {partner-product-short-name} web client
+[link=images/image6.png]
+image::../images/image6.png[image_placeholder,width=648,height=439]
++
+See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos – {partner-product-short-name}^] for videos and other resources to help you understand the platform features and capabilities.
+
+
+== Post deployment steps
+
+=== Manage your cluster using the OpenShift Console
+
+To access the {partner-product-short-name} web client, go to the *OpenshiftURLValue* shown in <<cfn_outputs>>.
+
+The default OpenShift administrative user is *kubeadmin.* The password is stored in AWS Secrets Manager, the name of the secret is displayed in <<cfn_outputs>> as the value of *OpenshiftPassword*.
+
+To retrieve the password, navigate to the AWS Systems Manager console, choose the secret displayed as the value of *OpenshiftPassword*, and then, choose *Retrieve secret value* as shown in <<testStep2>>. Use the retrieved value for the OpenShift console administrative password.
+
+:xrefstyle: short
+[#testStep2]
+.Retrieve secret value for OpenShift console password
+[link=images/image8.png]
+image::../images/image8.png[image_placeholder,width=648,height=439]
+
+=== Accessing the control plane through the Boot Node
+
+The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as in the following Bash instructions:
+
+. Run the command `ssh-add -K <your-key.pem>` to store the key in your keychain. On Linux, you might need to omit the `-K` flag.
+. Retrieve the host name of the Boot Node from the Amazon EC2 console as shown in <<testStep3>>.
++
+:xrefstyle: short
+[#testStep3]
+.Hostname of the boot node
+[link=images/image13.png]
+image::../images/image13.png[image_placeholder,width=648,height=439]
++
+. To log in to the bastion host, run `ssh -A ec2-user@<bootnode-host-name>``.
+. Run sudo to become root:
++
+```
+$ sudo -s
+```
+. Run oc login to authenticate with OpenShift and oc get pods, and verify that services are in a running state:
++
+```
+$ oc login
+$ oc get pods
+```
+
+=== Scaling up your cluster by adding compute nodes
+
+* Run `oc nodes` to get the current list of nodes
+* Run `oc get machineset -n openshift-machine-api` to get the machine sets for each Availability zone.
++
+:xrefstyle: short
+[#testStep4]
+.Getting the machine sets
+[link=images/image14.png]
+image::../images/image14.png[image_placeholder,width=648,height=439]
++
+* Select the machine set to scale up from the list returned in previous command
+* Edit selected machine set and update replica count as below:
++
+```
+oc edit machineset cp4i-pn-nk9dr-worker-eu-west-1a -n openshift-machine-api
+```
++
+:xrefstyle: short
+[#testStep5]
+.Edit machine set
+[link=images/image15.png]
+image::../images/image15.png[image_placeholder,width=648,height=439]
++
+* An AWS instance will be created and Desired count and current count will get updated to replica value.
+* After few mins once the node joins the cluster ready and available count will be updated to replica value.
+
+//TODO Changed two bullets to one NOTE section. Does that work?
+NOTE: If you choose to scale down your cluster or reduce the number of compute nodes, there is a risk of the cluster becoming unstable because pods will need to be rescheduled. Scaling down the worker nodes is not a recommended option.
+Cluster auto scaler can overrule the scaling activity to maintain the required threshold.
+
+=== {partner-product-short-name} services
+
+You can browse the various services that are available for use by navigating to the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[{partner-product-short-name} Platform Navigator^].
+
+:xrefstyle: short
+[#testStep6]
+.Capabilities catalog page in {partner-product-short-name}
+[link=images/image16.png]
+image::../images/image16.png[image_placeholder,width=648,height=439]
+
+:xrefstyle: short
+[#testStep7]
+.Runtimes catalog page in {partner-product-short-name}
+[link=images/image17.png]
+image::../images/image17.png[image_placeholder,width=648,height=439]
+
+As part of the Quick Start installation, the Platform Navigator is installed by default, giving you the ability to choose which of the capabilities and runtimes you wish to create after the deployment has completed.
+
+==== System requirements for each of the capabilities and services
+
+[cols=",,",options="header",]
+|===
+|Service Name |CPU cores( vCPUs) |Memory
+|*Asset Repository* |0.5 |640MG
+|*Operations Dashboard* |7 |13GB
+|*API Lifecycle and Management* |12 |48GB
+|*Messaging (queue manager)* |1 |1GB
+|*Event Streaming* |8.2 |8.2GB
+|*Application Integration Dashboard* |1 |4GB
+|*Application Integration Designer* |1 |5.75GB
+|*Gateway* |4 |4GB
+|*High Speed Transfers* |4 |4GB
+|===
+
+//TODO Is this valid for CP4I?
+==== Install a Service
+
+* Log in to your bootnode server as mentioned in access section. //TODO Make this a link
+* Change to the install directory.
++
+```
+$ cd /ibm
+```
++
+* Run these commands in sequence:
++
+```
+$ ./cpd-linux adm -r ./repo.yaml -a <Service Name> -n <Project Name> --apply
+
+$ ./cpd-linux -c <Storage Class> -r ./repo.yaml -a lite -n <Project Name> --transfer-image-to $(oc get route -n openshift-image-registry | tail -1| awk '\{print $2}')/<Project Name> --target-registry-username $(oc whoami | sed 's/://g') --target-registry-password $( oc serviceaccounts get-token cpdtoken) --cluster-pull-prefix image-registry.openshift-image-registry.svc:5000/<Project Name> -o override.yaml --insecure-skip-tls-verify
+```
+
+//TODO The rest of this level 4 section looks off. Should this be a new Level 4 heading?
+==== Installing capabilities as standalone installation
+
+===== Installation from Platform Navigator UI
+
+Visit https://www.ibm.com/support/knowledgecenter/SSGT7J_20.2/install/deployments.html[Capability and runtime deployment^] to learn more about installing capabilities using Platform Navigator.
+
+===== Installation from AWS Boot node
+
+* Login to your AWS boot node server.
+* Navigate to scripts directory.
++
+```
+cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
+```
+* Run the command for the desired capability. Below are examples for each:
+.. Operations Dashboard
++
+```
+./release-tracing.sh -n $\{namespace} -r $\{release_name} -f $\{file_storage} -b $\{block_storage} -p
+
+# -p is optional flag, adding it installs the capability in production mode
+```
++
+For example:
++
+```
+./release-tracing.sh -n integration -r operations-dashboard -f ocs-storagecluster-cephfs -b gp2 -p
+```
++
+.. API Connect
++
+```
+./release-apic.sh -n $\{namespace} -r $\{release_name} -p
+
+# -p is optional flag, adding it installs the capability in production mode
+```
++
+For example:
++
+```
+./release-apic.sh -n integration -r api-connect -p
+```
++
+.. App Connect Dashboard
++
+```
+./release-ace-dashboard.sh -n $\{namespace} -r $\{release_name} -s $\{storageClass} -p
+
+# -p is optional flag, adding it installs the capability in production mode
+```
++
+For example:
++
+```
+./release-ace-dashboard.sh -n integration -r app-connect-dashboard -s ocs-storagecluster-cephfs -p
+```
+.. App Connect Designer
++
+```
+./release-ace-designer.sh -n $\{namespace} -r $\{release_name} -s $\{storageClass} -p
+
+# -p is optional flag, adding it installs the capability in production mode
+```
+For example:
++
+```
+./release-ace-designer.sh -n integration -r app-connect-designer -s ocs-storagecluster-cephfs -p
+```
+.. Asset Repository
++
+```
+./release-ar.sh -n $\{namespace} -r $\{release_name} -a $\{assetDataVolumeClass} -c $\{couchVolumeClass}
+
+# -p is optional flag, adding it installs the capability in production mode
+```
++
+For example:
++
+```
+./release-ar.sh --n integration -r assets-repo -a ocs-storagecluster-cephfs -c ocs-storagecluster-cephfs -p
+```
+
+* The capability now displays as *Pending* in the *Status* column as shown in <<postDeployStep1>>. 
++
+:xrefstyle: short
+[#postDeployStep1]
+.List capabilities
+[link=images/image25.png]
+image::../images/image25.png[image_placeholder,width=648,height=439]
+
+* To trace installation progress, go to the OpenShift admin console and click *Events* in the left navigation menu, as shown in <<postDeployStep2>>.
++
+:xrefstyle: short
+[#postDeployStep2]
+.View OpenShift events
+[link=images/image26.png]
+image::../images/image26.png[image_placeholder,width=648,height=439]
+
+* In the Platform Navigator UI, when the capability displays as *Ready* in the *Status* column, it is fully installed as shown in <<postDeployStep3>>. 
++
+:xrefstyle: short
+[#postDeployStep3]
+.Verify capability status
+[link=images/image27.png]
+image::../images/image27.png[image_placeholder,width=648,height=439]
+
+
+To get information on other services that are available, see the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deployment Component Products^].
+
+==== Changing Platform Navigator Credentials
+
+* Login to the boot node server.
+* Navigate to scripts directory.
++
+```
+cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
+```
+*  Run the `change-cs-credentials.sh` script with the desired credentials
++
+```
+./change-cs-credentials.sh -u $\{username} -p $\{password}
+```
+the username has a default value of `admin` so if you want to keep the username and only change the password you can skip the `-u` flag
++
+```
+./change-cs-credentials.sh -p $\{password}
+```
+Please note that changing the credentials requires using `cloudctl` cli, but the script will automatically download it from the deployed common services on your openshift cluster and use it , so it doesn't require to have `cloudctl` pre installed
+
+//TODO I removed two Optional sections that showed how to edit security groups to grant additional access.
