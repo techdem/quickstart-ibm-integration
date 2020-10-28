@@ -9,6 +9,7 @@
 :deployment_time: 3 hours
 :default_deployment_region: us-east-1
 :template_ec2: true
+:parameters_as_appendix: true
 // Uncomment these two attributes if you are leveraging
 // - an AWS Marketplace listing.
 // Additional content will be auto-generated based on these attributes.
