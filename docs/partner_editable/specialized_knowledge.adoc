@@ -1,6 +1,12 @@
-// Replace the content in <>
-// Describe or link to specific knowledge requirements; for example: “familiarity with basic concepts in the areas of networking, database operations, and data encryption” or “familiarity with <software>.”
+This Quick Start assumes basic familiarity with Red Hat OpenShift and Cloud Pak for Integration components and services. 
+If you’re new to Cloud Pak for Integration and Red Hat OpenShift, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/overview.html[{partner-product-short-name} overview^].
 
-This Quick Start assumes familiarity with <knowledge expectations>.
+For Red Hat OpenShift installation requirements, see https://docs.openshift.com/container-platform/4.4/welcome/index.html[OpenShift Container Platform 4.4 Documentation^].
+For {partner-product-short-name} requirements, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/sysreqs.html[System requirements for {partner-product-short-name}^].
+https://access.redhat.com/documentation/en-us/openshift_container_platform/4.4/html/architecture/architecture-rhcos[Red Hat Enterprise Linux CoreOS (RHCOS)^] is used for the OpenShift EC2 instances in this deployment.
 
+For the list of supported versions, see the *{partner-product-name} version* parameter in the link:#_parameter_reference[Parameter reference] section.
+Review the https://www.ibm.com/support/pages/ibm-cloud-pak-integration-known-limitations[Known Limitations^] for {partner-product-short-name}.
+
+This Quick Start also assumes familiarity with the OpenShift command line interface and Linux.
 

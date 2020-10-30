@@ -1,13 +1,15 @@
-:quickstart-project-name: quickstart-documentation-base
-:partner-product-name: Example Product Name
-:partner-product-short-name: Example Product Name
-:partner-company-name: Example Company Name, Ltd.
-:doc-month: May
+:quickstart-project-name: quickstart-ibm-integration
+:partner-product-name: IBM Cloud Pak for Integration
+:partner-product-short-name: Cloud Pak for Integration
+:partner-company-name: IBM
+:doc-month: November
 :doc-year: 2020
 :partner-contributors: John Doe and Jane Doe - {partner-company-name}
-:quickstart-contributors: Jim Smith - AWS Global Partner SA, AWS + Joe Jones - Technical Product Manager, AWS
-:deployment_time: 30 minutes / 1 hour
+:quickstart-contributors: Vinod Shukla and Jim McConnell, AWS Quick Start team
+:deployment_time: 3 hours
 :default_deployment_region: us-east-1
+:template_ec2: true
+:parameters_as_appendix: true
 // Uncomment these two attributes if you are leveraging
 // - an AWS Marketplace listing.
 // Additional content will be auto-generated based on these attributes.

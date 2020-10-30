@@ -1,21 +1,47 @@
 // Add any tips or answers to anticipated questions. This could include the following troubleshooting information. If you don’t have any other Q&A to add, change “FAQ” to “Troubleshooting.”
 
-== FAQ
+== Troubleshooting FAQ
 
 *Q.* I encountered a *CREATE_FAILED* error when I launched the Quick Start.
 
-*A.* If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with *Rollback on failure* set to *Disabled*. (This setting is under *Advanced* in the AWS CloudFormation console, *Options* page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)
+*A.* If AWS CloudFormation fails to create the stack, relaunch the template with *Rollback on failure* set to *Disabled*. This setting is under *Advanced* in the AWS CloudFormation console on the  *Configure stack options* page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)
 // If you’re deploying on Linux instances, provide the location for log files on Linux, or omit this sentence.
 
-WARNING: When you set *Rollback on failure* to *Disabled*, you continue to incur AWS charges for this stack. Please make sure to delete the stack when you finish troubleshooting.
+WARNING: When you set *Rollback on failure* to *Disabled*, you continue to incur AWS charges for this stack. Be sure to delete the stack when you finish troubleshooting.
 
 For additional information, see https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html[Troubleshooting AWS CloudFormation^] on the AWS website.
 
 *Q.* I encountered a size limitation error when I deployed the AWS CloudFormation templates.
 
-*A.* We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see the http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html[AWS documentation^].
+*A.* Launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information, see http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html[AWS CloudFormation quotas^].
 
+*Q.* I cannot delete the stack that I created from the Quick Start.
 
-== Troubleshooting
+*A.* Clean up the registry bucket in your S3 account and retry deleting the stack.
 
-<Steps for troubleshooting the deployment go here.>
+*Q.* OpenShift shows not enough resources when installing capabilities or runtimes.
+
+*A.* When installing capabilities or runtimes, the capability or runtime (e.g. Event Streams) might stay in Pending state because certain pods fail to get placed. The reason is often a lack of resources, which results in the Kubernetes scheduler not being able to place the pods. To confirm the reason, open the OpenShift web console and navigate to Events, as shown in <<faq1>>.
+
+:xrefstyle: short
+[#faq1]
+.View OpenShift events
+[link=images/image1.png]
+image::../images/image1.png[image_placeholder,width=648,height=439]
+
+To resolve the error, either uninstall nonessential capabilities and runtimes or add more worker nodes to the cluster until the resource requirements are fulfilled.
+
+*Q.* OpenShift shows pods on pending status for an excessive period of time.
+
+*A.* If the installation is still in Pending state after a long time or is in Failed state, the cluster might not be ready yet, or another temporary error might have occured.
+
+To resolve this error, uninstall and reinstall the capability or runtime.
+
+Be sure to check if the configuration is correct before reinstalling.
+
+If reinstalling does not solve the problem, try these debugging tips:
+
+* In the OpenShift web console, go to *Home > Events* and select the namespace that contains the installations of the capabilities and runtimes.
+* If a pod fails, check the logs of the pod in the web console by going to *Workloads > Pods*, locating the failing pod, and selecting *Logs* to view related logs or events.
+
+If none of these steps resolve your issue, contact your IBM representative.
