@@ -20,14 +20,14 @@ internet access for resources in the private subnets.*
   ** A Linux bastion host in an Auto Scaling group to allow inbound Secure
 Shell (SSH) access to EC2 instances in public and private subnets.*
 * In the private subnets:
-  ** OpenShift Container Platform (OCP) master nodes in up to three Availability Zones
-  ** OCP compute nodes that host the {partner-product-short-name} capabilities
-  ** Elastic Block Storage disks that are mounted on the compute nodes for container persistent data
+  ** OpenShift Container Platform (OCP) master nodes in up to three Availability Zones.
+  ** OCP compute nodes that host the {partner-product-short-name} capabilities.
+  ** Elastic Block Storage disks that are mounted on the compute nodes for container-persistent data.
 * A Classic Load Balancer spanning the public subnets for accessing {partner-product-short-name} from a web browser.
 * A Classic Load Balancer spanning the public subnets for accessing the OpenShift Container Storage (OCS) S3 service.
 * A Classic Load Balancer spanning the public subnets for accessing the OCS NooBaa service.
 * A Network Load Balancer spanning the public subnets for routing external OpenShift application programming interface (API) traffic to the OCP master instances.
-* A Network Load Balancer spanning the private subnets for routing internal OpenShift application programming interface (API) traffic to the OCP master instances.
+* A Network Load Balancer spanning the private subnets for routing internal OpenShift API traffic to the OCP master instances.
 * Amazon Route 53 as your public Domain Name System (DNS) for resolving domain names of the IBM {partner-product-short-name} management console and applications deployed on the cluster.
 
 *The template that deploys the Quick Start into an existing VPC skips

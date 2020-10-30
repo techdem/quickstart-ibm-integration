@@ -4,12 +4,12 @@
 == Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
 
-When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to {partner-product-short-name} web client to verify the deployment, and then use the web client to explore {partner-product-short-name} features.
+When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to the {partner-product-short-name} web client to verify the deployment, and then use the web client to explore {partner-product-short-name} features.
 
-. To access the {partner-product-short-name} user interface, go to the *CP4IWebClientURL* output of the root stack as shown in <<cfn_outputs>>.
+. To access the {partner-product-short-name} user interface, go to the *CP4IWebClientURL* output of the root stack, as shown in <<cfn_outputs>>.
 . A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the {partner-product-short-name} web client login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the {partner-product-short-name} cluster is self-signed, which causes the unsafe connection warning from your browser.
 . Log in to the {partner-product-short-name} web client by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
-. Once you log in, the welcome page is displayed as shown in <<testStep1>>.
+. After you log in, the welcome page is displayed as shown in <<testStep1>>.
 +
 :xrefstyle: short
 [#testStep1]
@@ -17,7 +17,7 @@ When the AWS CloudFormation template has successfully created the stack, all ser
 [link=images/image6.png]
 image::../images/image6.png[image_placeholder,width=648,height=439]
 +
-See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos – {partner-product-short-name}^] for videos and other resources to help you understand the platform features and capabilities.
+See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos^] for {partner-product-short-name} videos and other resources to help you understand the platform features and capabilities.
 
 
 == Post deployment steps
@@ -26,9 +26,9 @@ See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&p
 
 To access the {partner-product-short-name} web client, go to the *OpenshiftURLValue* shown in <<cfn_outputs>>.
 
-The default OpenShift administrative user is *kubeadmin.* The password is stored in AWS Secrets Manager, the name of the secret is displayed in <<cfn_outputs>> as the value of *OpenshiftPassword*.
+The default OpenShift administrative user is *kubeadmin.* The password is stored in AWS Secrets Manager, and the name of the secret is displayed in <<cfn_outputs>> as the value of *OpenshiftPassword*.
 
-To retrieve the password, navigate to the AWS Systems Manager console, choose the secret displayed as the value of *OpenshiftPassword*, and then, choose *Retrieve secret value* as shown in <<testStep2>>. Use the retrieved value for the OpenShift console administrative password.
+To retrieve the password, navigate to the AWS Systems Manager console, choose the secret displayed as the value of *OpenshiftPassword*, and then choose *Retrieve secret value* as shown in <<testStep2>>. Use the retrieved value for the OpenShift console administrative password.
 
 :xrefstyle: short
 [#testStep2]
@@ -36,12 +36,12 @@ To retrieve the password, navigate to the AWS Systems Manager console, choose th
 [link=images/image8.png]
 image::../images/image8.png[image_placeholder,width=648,height=439]
 
-=== Accessing the control plane through the Boot Node
+=== Accessing the control plane through the boot node
 
-The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as in the following Bash instructions:
+The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as described in the following Bash instructions:
 
 . Run the command `ssh-add -K <your-key.pem>` to store the key in your keychain. On Linux, you might need to omit the `-K` flag.
-. Retrieve the host name of the Boot Node from the Amazon EC2 console as shown in <<testStep3>>.
+. Retrieve the host name of the boot node from the Amazon EC2 console as shown in <<testStep3>>.
 +
 :xrefstyle: short
 [#testStep3]
@@ -50,12 +50,12 @@ The recommended method of SSH access to the OpenShift cluster instances via the 
 image::../images/image13.png[image_placeholder,width=648,height=439]
 +
 . To log in to the bastion host, run `ssh -A ec2-user@<bootnode-host-name>``.
-. Run sudo to become root:
+. Run `sudo` to become root:
 +
 ```
 $ sudo -s
 ```
-. Run oc login to authenticate with OpenShift and oc get pods, and verify that services are in a running state:
+. Run `oc login` to authenticate with OpenShift and `oc get pods`, and verify that services are in a running state:
 +
 ```
 $ oc login
@@ -64,8 +64,8 @@ $ oc get pods
 
 === Scaling up your cluster by adding compute nodes
 
-* Run `oc nodes` to get the current list of nodes
-* Run `oc get machineset -n openshift-machine-api` to get the machine sets for each Availability zone.
+. Run `oc nodes` to get the current list of nodes.
+. Run `oc get machineset -n openshift-machine-api` to get the machine sets for each Availability Zone.
 +
 :xrefstyle: short
 [#testStep4]
@@ -73,8 +73,8 @@ $ oc get pods
 [link=images/image14.png]
 image::../images/image14.png[image_placeholder,width=648,height=439]
 +
-* Select the machine set to scale up from the list returned in previous command
-* Edit selected machine set and update replica count as below:
+. Select the machine set to scale up from the list that is returned in the previous command.
+. Edit the selected machine set and update the replica count:
 +
 ```
 oc edit machineset cp4i-pn-nk9dr-worker-eu-west-1a -n openshift-machine-api
@@ -86,15 +86,14 @@ oc edit machineset cp4i-pn-nk9dr-worker-eu-west-1a -n openshift-machine-api
 [link=images/image15.png]
 image::../images/image15.png[image_placeholder,width=648,height=439]
 +
-* An AWS instance will be created and Desired count and current count will get updated to replica value.
-* After few mins once the node joins the cluster ready and available count will be updated to replica value.
+An AWS instance is created, and the *Desired* and *Current* counts are updated to the replica value. After a few minutes, after the node joins the cluster, the *Ready* and *Available* counts are also updated to the replica value.
 
-NOTE: If you choose to scale down your cluster or reduce the number of compute nodes, there is a risk of the cluster becoming unstable because pods will need to be rescheduled. Scaling down the worker nodes is not a recommended option.
+NOTE: If you choose to scale down your cluster or reduce the number of compute nodes, the cluster might become unstable because pods must be rescheduled. Scaling down the worker nodes is not a recommended option.
 The cluster auto scaler can overrule the scaling activity to maintain the required threshold.
 
 === {partner-product-short-name} services
 
-You can browse the various services that are available for use by navigating to the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[{partner-product-short-name} Platform Navigator^].
+To browse available services that you can deploy using the {partner-product-short-name} Platform Navigator, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deploying Component Products^] in the IBM Knowledge Center.
 
 :xrefstyle: short
 [#testStep6]
@@ -129,19 +128,19 @@ As part of the Quick Start installation, the Platform Navigator is installed by 
 
 ==== Installing capabilities
 
-===== Installation from Platform Navigator UI
+===== Installing from the Platform Navigator
 
-Visit https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deployments.html[Capability and runtime deployment^] to learn more about installing capabilities using Platform Navigator.
+To learn more about installing capabilities using the OpenShift Platform Navigator, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deploying Component Products^] in the IBM Knowledge Center.
 
-===== Installation from AWS Boot node
+===== Installing from the AWS boot node
 
-* Login to your AWS boot node server.
-* Navigate to scripts directory.
+. Log in to your AWS boot node server.
+. Navigate to scripts directory.
 +
 ```
 cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
 ```
-* Run the command for the desired capability. Below are examples for each:
+. Run the command for the desired capability. See the following examples:
 .. Operations Dashboard
 +
 ```
@@ -150,7 +149,7 @@ cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
 # -p is optional flag, adding it installs the capability in production mode
 ```
 +
-For example:
+Example:
 +
 ```
 ./release-tracing.sh -n integration -r operations-dashboard -f ocs-storagecluster-cephfs -b gp2 -p
@@ -164,7 +163,7 @@ For example:
 # -p is optional flag, adding it installs the capability in production mode
 ```
 +
-For example:
+Example:
 +
 ```
 ./release-apic.sh -n integration -r api-connect -p
@@ -178,7 +177,7 @@ For example:
 # -p is optional flag, adding it installs the capability in production mode
 ```
 +
-For example:
+Example:
 +
 ```
 ./release-ace-dashboard.sh -n integration -r app-connect-dashboard -s ocs-storagecluster-cephfs -p
@@ -190,7 +189,7 @@ For example:
 
 # -p is optional flag, adding it installs the capability in production mode
 ```
-For example:
+Example:
 +
 ```
 ./release-ace-designer.sh -n integration -r app-connect-designer -s ocs-storagecluster-cephfs -p
@@ -203,13 +202,13 @@ For example:
 # -p is optional flag, adding it installs the capability in production mode
 ```
 +
-For example:
+Example:
 +
 ```
 ./release-ar.sh --n integration -r assets-repo -a ocs-storagecluster-cephfs -c ocs-storagecluster-cephfs -p
 ```
 
-* The capability now displays as *Pending* in the *Status* column as shown in <<postDeployStep1>>. 
+. The capability now displays as *Pending* in the *Status* column, as shown in <<postDeployStep1>>. 
 +
 :xrefstyle: short
 [#postDeployStep1]
@@ -217,7 +216,7 @@ For example:
 [link=images/image25.png]
 image::../images/image25.png[image_placeholder,width=648,height=439]
 
-* To trace installation progress, go to the OpenShift admin console and click *Events* in the left navigation menu, as shown in <<postDeployStep2>>.
+. To trace installation progress, go to the OpenShift web console and select *Events* in the left navigation menu, as shown in <<postDeployStep2>>.
 +
 :xrefstyle: short
 [#postDeployStep2]
@@ -225,7 +224,7 @@ image::../images/image25.png[image_placeholder,width=648,height=439]
 [link=images/image26.png]
 image::../images/image26.png[image_placeholder,width=648,height=439]
 
-* In the Platform Navigator UI, when the capability displays as *Ready* in the *Status* column, it is fully installed as shown in <<postDeployStep3>>. 
+. In the Platform Navigator, when the capability displays as *Ready* in the *Status* column, the capability is fully installed, as shown in <<postDeployStep3>>. 
 +
 :xrefstyle: short
 [#postDeployStep3]
@@ -234,24 +233,24 @@ image::../images/image26.png[image_placeholder,width=648,height=439]
 image::../images/image27.png[image_placeholder,width=648,height=439]
 
 
-To get information on other services that are available, see the https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deployment Component Products^].
+For information about other services that are available, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deploying Component Products^] in the IBM Knowledge Center.
 
-==== Changing Platform Navigator Credentials
+==== Changing Platform Navigator credentials
 
-* Login to the boot node server.
-* Navigate to scripts directory.
+. Login to the boot node server.
+. Navigate to scripts directory.
 +
 ```
 cd /ibm/cp4i-deployment/capabilities-runtimes-scripts
 ```
-*  Run the `change-cs-credentials.sh` script with the desired credentials
+.  Run the `change-cs-credentials.sh` script with the desired credentials:
 +
 ```
 ./change-cs-credentials.sh -u $\{username} -p $\{password}
 ```
-the username has a default value of `admin` so if you want to keep the username and only change the password you can skip the `-u` flag
+The user name has a default value of `admin`, so if you want to keep the user name and only change the password, you can skip the `-u` flag.
 +
 ```
 ./change-cs-credentials.sh -p $\{password}
 ```
-Please note that changing the credentials requires using `cloudctl` cli, but the script will automatically download it from the deployed common services on your openshift cluster and use it , so it doesn't require to have `cloudctl` pre installed
+Note that changing credentials requires you to use the `cloudctl` command line interface (CLI). The script automatically downloads the `cloudctl` CLI from the deployed common services on your OpenShift cluster and uses it, so you don't have to pre-install it. 

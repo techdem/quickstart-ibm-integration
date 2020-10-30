@@ -2,7 +2,7 @@
 :partner-product-name: IBM Cloud Pak for Integration
 :partner-product-short-name: Cloud Pak for Integration
 :partner-company-name: IBM
-:doc-month: May
+:doc-month: November
 :doc-year: 2020
 :partner-contributors: John Doe and Jane Doe - {partner-company-name}
 :quickstart-contributors: Vinod Shukla and Jim McConnell, AWS Quick Start team

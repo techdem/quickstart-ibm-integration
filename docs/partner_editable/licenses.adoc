@@ -1,4 +1,4 @@
-You can get started with a 60 day trial period or use your existing {partner-product-short-name} entitlement. You also have the option to use an evaluation version of OpenShift Container Platform (OCP) and OpenShift Container Storage (OCS), or to use your existing entitlement to those components.
+You can get started with a 60-day trial period or use your existing {partner-product-short-name} entitlement. You also have the option to use an evaluation version of OpenShift Container Platform (OCP) and OpenShift Container Storage (OCS), or to use your existing entitlement to those components.
 
 To get pricing information, or to use your existing {partner-product-short-name} entitlements, contact your IBM sales representative.
 

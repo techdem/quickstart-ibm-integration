@@ -1,21 +1,21 @@
 // If no preperation is required, remove all content from here
 //
 //==== Prepare for the deployment
-==== Sign up for a Red Hat Subscription
+==== Sign up for a Red Hat subscription
 
-This Quick Start requires a Red Hat subscription. During the deployment of the Quick Start, you’ll need to provide your https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift Installer Provisioned Infrastructure pull secret^].
+This Quick Start requires a Red Hat subscription. During the deployment of the Quick Start, you must provide your https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift Installer Provisioned Infrastructure pull secret^].
 
-If you don’t have an Red Hat account, you can register on the Red Hat website. (Note that registration may require a non-personal email address). To procure a 60-day evaluation license for OpenShift, follow the instructions at https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it[Evaluate Red Hat OpenShift Container Platform^].
+If you don’t have a Red Hat account, you can register on the Red Hat website. (Note that registration may require a non-personal email address). To procure a 60-day evaluation license for OpenShift, follow the instructions at https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it[Evaluate Red Hat OpenShift Container Platform^].
 
 The https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift pull secret^] should be uploaded to an S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.
 
-==== {partner-product-short-name} Subscription
+==== {partner-product-short-name} subscription
 
-The Quick Start requires an entitlement key to allow you to access the {partner-product-short-name} content. If you don’t have a paid entitlement you can access a https://www.ibm.com/account/reg/uk-en/signup?formid=urx-46640[60 day trial subscription key^].
+The Quick Start requires an entitlement key to allow you to access the {partner-product-short-name} content. If you don’t have a paid entitlement, you can access a https://www.ibm.com/account/reg/uk-en/signup?formid=urx-46640[60-day trial subscription key^].
 
-To use the {partner-product-short-name} beyond this 60 day period please contact IBM sales, an IBM approved Business Partner, or the Red Hat Marketplace to buy licensed entitlement to {partner-product-short-name}.
+To use the {partner-product-short-name} beyond this 60-day period, contact IBM sales, an IBM approved Business Partner, or the Red Hat Marketplace to buy licensed entitlement to {partner-product-short-name}.
 
-==== Storage Subscription
+==== Storage subscription
 
-The Quick Start uses OpenShift Container Storage (OCS) as technology to provide persistent storage for its capabilities and runtimes. You have an option to use an evaluation version of OCS. Visit https://www.openshift.com/products/container-storage/contact[OpenShift Container Storage^] for their licensed versions.
+The Quick Start uses OpenShift Container Storage (OCS) as technology to provide persistent storage for its capabilities and runtimes. You can use an evaluation version of OCS. See https://www.openshift.com/products/container-storage/contact[OpenShift Container Storage^] for information about licensed versions.
 
