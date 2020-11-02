@@ -234,6 +234,7 @@ Parameters:
   MasterInstanceType:
     Default: m5.2xlarge
     AllowedValues:
+      - m5.xlarge
       - m5.2xlarge
       - m5d.xlarge
       - m5d.2xlarge
@@ -243,6 +244,7 @@ Parameters:
   ComputeInstanceType:
     Default: m5.8xlarge
     AllowedValues:
+      - m5.4xlarge
       - m5.8xlarge
       - m5.12xlarge
       - m5.24xlarge
