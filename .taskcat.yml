@@ -34,4 +34,4 @@ tests:
     regions:  
     - ca-central-1
     - eu-west-1
-    template: templates/ibm-cloudpak-root.yaml
+    template: templates/ibm-cloudpak-root.template.yaml
