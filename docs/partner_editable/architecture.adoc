@@ -3,11 +3,10 @@ default parameters builds the following _{partner-product-short-name}_ environme
 AWS Cloud.
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
-//TODO The architecture diagram does not follow our template and needs to be revised - I can use the ICPD source diagram as a base.
 [#architecture1]
 .Quick Start architecture for _{partner-product-short-name}_ on AWS
 [link=images/architecture_diagram.png]
-image::../images/architecture_diagram.png[Architecture,width=648,height=439]
+image::../images/architecture_diagram.png[Architecture,width=750,height=508]
 
 As shown in Figure 1, the Quick Start sets up the following:
 
@@ -41,4 +40,4 @@ The {partner-product-short-name} components run as containers on the OpenShift c
 [#architecture2]
 .{partner-product-short-name} Services
 [link=images/image2.png]
-image::../images/image2.png[image_placeholder,width=1978,height=1112]
+image::../images/image2.png[image_placeholder,width=750,height=508]
