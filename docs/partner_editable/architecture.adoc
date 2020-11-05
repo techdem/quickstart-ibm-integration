@@ -7,9 +7,6 @@ AWS Cloud.
 .Quick Start architecture for {partner-product-short-name} on AWS
 [link=images/icp-integration-architecture.png]
 image::../images/ipc-integration-architecture.png[Architecture,width=648,height=439]
-=======
-.Quick Start architecture for {partner-product-short-name} on AWS
-[link=images/ipc-integration-architecture.png]
 image::../images/architecture_diagram.png[Architecture,width=750,height=508]
 
 As shown in Figure 1, the Quick Start sets up the following:
