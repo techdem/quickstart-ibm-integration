@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Template for an IBM Cloud Pak for Integration deployment with existing VPC. **WARNING** This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1pek09fje)
+Description: Template for an IBM Cloud Pak for Integration deployment with existing VPC. **WARNING** This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r9m3n6h8)
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Parameters for deploying into an existing VPC"
@@ -227,6 +227,7 @@ Parameters:
   MasterInstanceType:
     Default: m5.2xlarge
     AllowedValues:
+      - m5.xlarge
       - m5.2xlarge
       - m5d.xlarge
       - m5d.2xlarge
@@ -236,6 +237,7 @@ Parameters:
   ComputeInstanceType:
     Default: m5.8xlarge
     AllowedValues:
+      - m5.4xlarge
       - m5.8xlarge
       - m5.12xlarge
       - m5.24xlarge

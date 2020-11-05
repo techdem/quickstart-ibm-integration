@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'Root template for an IBM Cloud Pak for Integration deployment. This is the root template for a collection of nested stacks that make up the full CloudPak for Integration deployment. **WARNING** This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template'
+Description: 'Root template for an IBM Cloud Pak for Integration deployment. This is the root template for a collection of nested stacks that make up the full CloudPak for Integration deployment. **WARNING** This template creates EC2 instances and related resources. You will be billed for the AWS resources used if you create a stack from this template. (qs-1r9m3n6fb)'
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Parameters for deploying into a new VPC"
@@ -234,6 +234,7 @@ Parameters:
   MasterInstanceType:
     Default: m5.2xlarge
     AllowedValues:
+      - m5.xlarge
       - m5.2xlarge
       - m5d.xlarge
       - m5d.2xlarge
@@ -243,6 +244,7 @@ Parameters:
   ComputeInstanceType:
     Default: m5.8xlarge
     AllowedValues:
+      - m5.4xlarge
       - m5.8xlarge
       - m5.12xlarge
       - m5.24xlarge
