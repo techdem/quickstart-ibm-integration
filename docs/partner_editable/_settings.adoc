@@ -4,7 +4,7 @@
 :partner-company-name: IBM
 :doc-month: November
 :doc-year: 2020
-:partner-contributors: John Doe and Jane Doe - {partner-company-name}
+:partner-contributors: Jesus Arteche, Tudor Chiribes, Tobias Wetzel, Walid Abou Ali, Elaina Mickelburgh, Andy Garratt, and Matt Roberts - {partner-company-name}
 :quickstart-contributors: Vinod Shukla and Jim McConnell, AWS Quick Start team
 :deployment_time: 3 hours
 :default_deployment_region: us-east-1
