@@ -5,7 +5,6 @@ AWS Cloud.
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 [#architecture1]
 .Quick Start architecture for {partner-product-short-name} on AWS
-[link=images/icp-integration-architecture.png]
 image::../images/ipc-integration-architecture.png[Architecture,width=648,height=439]
 
 As shown in Figure 1, the Quick Start sets up the following:
