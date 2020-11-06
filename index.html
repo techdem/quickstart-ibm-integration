@@ -842,7 +842,7 @@ p.footer-text a{color:#d7d8d8}
 </div>
 <div class="paragraph text-center">
 <p><strong>November 2020</strong><br>
-<em>John Doe and Jane Doe - IBM</em><br>
+<em>Jesus Arteche, Tudor Chiribes, Tobias Wetzel, Walid Abou Ali, Elaina Mickelburgh, Andy Garratt, and Matt Roberts - IBM</em><br>
 <em>Vinod Shukla and Jim McConnell, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
@@ -991,14 +991,14 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <div class="sectionbody">
 <div class="paragraph">
 <p>Deploying this Quick Start for a new virtual private cloud (VPC) with
-default parameters builds the following <em>Cloud Pak for Integration</em> environment in the
+default parameters builds the following Cloud Pak for Integration environment in the
 AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
-<a class="image" href="images/architecture_diagram.png"><img src="images/architecture_diagram.png" alt="Architecture" width="648" height="439"></a>
+<a class="image" href="images/icp-integration-architecture.png"><img src="images/ipc-integration-architecture.png" alt="Architecture" width="648" height="439"></a>
 </div>
-<div class="title">Figure 1. Quick Start architecture for <em>Cloud Pak for Integration</em> on AWS</div>
+<div class="title">Figure 1. Quick Start architecture for Cloud Pak for Integration on AWS</div>
 </div>
 <div class="paragraph">
 <p>As shown in Figure 1, the Quick Start sets up the following:</p>
@@ -1022,7 +1022,7 @@ internet access for resources in the private subnets.*</p>
 </li>
 <li>
 <p>A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to EC2 instances in public and private subnets.*</p>
+Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in public and private subnets.*</p>
 </li>
 </ul>
 </div>
@@ -1032,13 +1032,13 @@ Shell (SSH) access to EC2 instances in public and private subnets.*</p>
 <div class="ulist">
 <ul>
 <li>
-<p>OpenShift Container Platform (OCP) master nodes in up to three Availability Zones.</p>
+<p>Red Hat OpenShift Container Platform (OCP) master nodes in up to three Availability Zones.</p>
 </li>
 <li>
 <p>OCP compute nodes that host the Cloud Pak for Integration capabilities.</p>
 </li>
 <li>
-<p>Elastic Block Storage disks that are mounted on the compute nodes for container-persistent data.</p>
+<p>Amazon Elastic Block Store (Amazon EBS) disks that are mounted on the compute nodes for container-persistent data.</p>
 </li>
 </ul>
 </div>
@@ -1073,7 +1073,7 @@ configuration.</p>
 </div>
 <div id="architecture2" class="imageblock">
 <div class="content">
-<a class="image" href="images/image2.png"><img src="images/image2.png" alt="image_placeholder" width="1978" height="1112"></a>
+<a class="image" href="images/image2.png"><img src="images/image2.png" alt="image_placeholder" width="750" height="508"></a>
 </div>
 <div class="title">Figure 2. Cloud Pak for Integration Services</div>
 </div>
@@ -1085,13 +1085,7 @@ configuration.</p>
 <div class="sect2">
 <h3 id="_specialized_knowledge">Specialized knowledge</h3>
 <div class="paragraph">
-<p>This deployment guide requires a moderate level of familiarity with
-AWS services. If you’re new to AWS, visit the
-<a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a>
-and the <a href="https://aws.amazon.com/training/">AWS Training and Certification
-website</a>. These sites provide materials for learning how to design,
-deploy, and operate your infrastructure and applications on the AWS
-Cloud.</p>
+<p>This deployment requires a moderate level of familiarity with AWS services. If you’re new to AWS, visit <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started with AWS</a> and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">Training and Certification</a>. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
 <p>This Quick Start assumes basic familiarity with Red Hat OpenShift and Cloud Pak for Integration components and services. 
@@ -1310,12 +1304,12 @@ You are responsible for the cost of the AWS services used while running this Qui
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_launch_link" target="_blank" rel="noopener">Deploy Cloud Pak for Integration into a new VPC on AWS</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_template_link" target="_blank" rel="noopener">View template</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/yMzKX" target="_blank" rel="noopener">Deploy Cloud Pak for Integration into a new VPC on AWS</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/aws-quickstart/quickstart-ibm-integration/blob/main/templates/ibm-cloudpak-root.template.yaml" target="_blank" rel="noopener">View template</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_launch_link" target="_blank" rel="noopener">Deploy Cloud Pak for Integration into an existing VPC on AWS</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="http://qs_template_link" target="_blank" rel="noopener">View template</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/MK97m" target="_blank" rel="noopener">Deploy Cloud Pak for Integration into an existing VPC on AWS</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://github.com/aws-quickstart/quickstart-ibm-integration/blob/main/templates/ibm-cloudpak-integration.template.yaml" target="_blank" rel="noopener">View template</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -1375,7 +1369,7 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 </div>
 <div id="cfn_outputs" class="imageblock">
 <div class="content">
-<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
+<a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="100%" height="100%"></a>
 </div>
 <div class="title">Figure 3. Cloud Pak for Integration outputs after successful deployment</div>
 </div>
