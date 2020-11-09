@@ -6,7 +6,7 @@
 :doc-year: 2020
 :partner-contributors: Jesus Arteche, Tudor Chiribes, Tobias Wetzel, Walid Abou Ali, Elaina Mickelburgh, Andy Garratt, and Matt Roberts - {partner-company-name}
 :quickstart-contributors: Vinod Shukla and Jim McConnell, AWS Quick Start team
-:deployment_time: 3 hours
+:deployment_time: 2 hours
 :default_deployment_region: us-east-1
 :template_ec2: true
 :parameters_as_appendix: true
