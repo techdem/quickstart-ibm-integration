@@ -7,7 +7,7 @@ This Quick Start requires a Red Hat subscription. During the deployment of the Q
 
 If you don’t have a Red Hat account, you can register on the Red Hat website. (Note that registration may require a non-personal email address). To procure a 60-day evaluation license for OpenShift, follow the instructions at https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it[Evaluate Red Hat OpenShift Container Platform^].
 
-The https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift pull secret^] should be uploaded to an S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.
+The https://cloud.redhat.com/openshift/install/aws/installer-provisioned[OpenShift pull secret^] should be uploaded to an Amazon S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.
 
 ==== {partner-product-short-name} subscription
 
@@ -17,5 +17,5 @@ To use the {partner-product-short-name} beyond this 60-day period, contact IBM s
 
 ==== Storage subscription
 
-The Quick Start uses OpenShift Container Storage (OCS) as technology to provide persistent storage for its capabilities and runtimes. You can use an evaluation version of OCS. See https://www.openshift.com/products/container-storage/contact[OpenShift Container Storage^] for information about licensed versions.
+The Quick Start uses OCS as technology to provide persistent storage for its capabilities and runtimes. You can use an evaluation version of OCS. See https://www.openshift.com/products/container-storage/contact[OpenShift Container Storage^] for information about licensed versions.
 

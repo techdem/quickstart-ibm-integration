@@ -4,7 +4,7 @@
 
 *Q.* I encountered a *CREATE_FAILED* error when I launched the Quick Start.
 
-*A.* If AWS CloudFormation fails to create the stack, relaunch the template with *Rollback on failure* set to *Disabled*. This setting is under *Advanced* in the AWS CloudFormation console on the  *Configure stack options* page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)
+*A.* If AWS CloudFormation fails to create the stack, relaunch the template with *Rollback on failure* set to *Disabled*. This setting is under *Advanced* in the AWS CloudFormation console on the *Configure stack options* page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)
 // If you’re deploying on Linux instances, provide the location for log files on Linux, or omit this sentence.
 
 WARNING: When you set *Rollback on failure* to *Disabled*, you continue to incur AWS charges for this stack. Be sure to delete the stack when you finish troubleshooting.
@@ -31,7 +31,7 @@ image::../images/image1.png[image_placeholder,width=648,height=439]
 
 To resolve the error, either uninstall nonessential capabilities and runtimes or add more worker nodes to the cluster until the resource requirements are fulfilled.
 
-*Q.* OpenShift shows pods on pending status for an excessive period of time.
+*Q.* OpenShift shows pods on Pending status for an excessive period of time.
 
 *A.* If the installation is still in Pending state after a long time or is in Failed state, the cluster might not be ready yet, or another temporary error might have occured.
 

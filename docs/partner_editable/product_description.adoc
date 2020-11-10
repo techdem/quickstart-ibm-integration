@@ -1,8 +1,8 @@
 {partner-product-name} provides a simple, complete solution that brings together IBM’s powerful integration capabilities to support a broad range of integration styles and use cases as part of your journey to the cloud.
 
-The Cloud Pak includes the following capabilities to meet all your integration needs, delivered as a single integrated platform that works seamlessly together in production:
+The Cloud Pak includes the following capabilities to meet all your integration needs, delivered as a single, integrated platform that works seamlessly together in production:
 
-* *API Lifecycle Management* -- Create, secure, publish, discover, and manage APIs across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. 
+* *API Lifecycle Management* -- Create, secure, publish, discover, and manage application programming interfaces (APIs) across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. 
 * *Application and Data Integration* -- Integrate all of your business data and applications more quickly and easily across any cloud, from the simplest software-as-a-service (SaaS) application to the most complex systems -- without worrying about mismatched sources, formats, or standards. 
 * *Messaging* -- Simplify, accelerate, and facilitate the reliable exchange of data with a flexible and security-rich messaging solution that’s trusted by some of the world’s most successful enterprises. Ensure you receive the information you need, when you need it -- and receive it only once. 
 * *Event Streams* -- Use Apache Kafka to deliver messages more easily and reliably and to react to events in real time. Provide more engaging customer experiences by responding to events before the moment passes. 
@@ -10,12 +10,12 @@ The Cloud Pak includes the following capabilities to meet all your integration n
 * *High Speed Data Transfer* -- Send large files and data sets virtually anywhere, reliably, and at maximum speed. Accelerate collaboration and meet the demands of complex global teams, without compromising performance or security. 
 * *Operations Dashboard* -- Enable cross-component transaction tracing to allow troubleshooting and investigating errors and latency issues across integration capabilities.
 
-Cloud Pak for Integration uses AWS services and features, including virtual private clouds (VPCs), Availability Zones, security groups, and Elastic Load Balancing to build a reliable and scalable cloud platform.  
+Cloud Pak for Integration uses AWS services and features, including virtual private clouds (VPCs), Availability Zones, security groups, Amazon Elastic Block Store (Amazon EBS), Amazon Elastic Compute Cloud (EC2), and Elastic Load Balancing to build a reliable and scalable cloud platform.  
 
 This reference deployment provides AWS CloudFormation templates to deploy Cloud Pak for Integration on a new Red Hat OpenShift cluster. This cluster includes:  
 
-* A Red Hat OpenShift Container Platform cluster created in a new or existing VPC on Red Hat CoreOS (RHCOS) instances, using the https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-customizations.html[+++Red Hat OpenShift Installer Provisioned Infrastructure+++]. See the https://docs.openshift.com/container-platform/4.4/architecture/architecture-installation.html[+++OpenShift Container Platform Installation overview+++] for details about the underlying OpenShift deployment architecture. 
-* A highly available storage infrastructure with Red Hat OpenShift Container Storage. 
+* A Red Hat OpenShift Container Platform (OCP) cluster created in a new or existing VPC on Red Hat CoreOS (RHCOS) instances, using the https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-customizations.html[+++Red Hat OpenShift Installer Provisioned Infrastructure+++]. See the https://docs.openshift.com/container-platform/4.4/architecture/architecture-installation.html[+++OpenShift Container Platform Installation overview+++] for details about the underlying OpenShift deployment architecture. 
+* A highly available storage infrastructure with Red Hat OpenShift Container Storage (OCS). 
 * Scalable OpenShift compute nodes for running {partner-product-short-name} capabilities. 
 
 For more information about Cloud Pak for Integration, see the https://www.ibm.com/support/knowledgecenter/SSGT7J[+++IBM Knowledge Center.+++^] 
