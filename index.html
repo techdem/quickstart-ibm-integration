@@ -893,12 +893,12 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <p>IBM Cloud Pak for Integration provides a simple, complete solution that brings together IBM’s powerful integration capabilities to support a broad range of integration styles and use cases as part of your journey to the cloud.</p>
 </div>
 <div class="paragraph">
-<p>The Cloud Pak includes the following capabilities to meet all your integration needs, delivered as a single integrated platform that works seamlessly together in production:</p>
+<p>The Cloud Pak includes the following capabilities to meet all your integration needs, delivered as a single, integrated platform that works seamlessly together in production:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>API Lifecycle Management</strong>&#8201;&#8212;&#8201;Create, secure, publish, discover, and manage APIs across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. </p>
+<p><strong>API Lifecycle Management</strong>&#8201;&#8212;&#8201;Create, secure, publish, discover, and manage application programming interfaces (APIs) across clouds while you maintain continuous availability. Take control of your API ecosystem and drive digital business with a robust API strategy that can meet the changing needs of your users. </p>
 </li>
 <li>
 <p><strong>Application and Data Integration</strong>&#8201;&#8212;&#8201;Integrate all of your business data and applications more quickly and easily across any cloud, from the simplest software-as-a-service (SaaS) application to the most complex systems&#8201;&#8212;&#8201;without worrying about mismatched sources, formats, or standards. </p>
@@ -921,7 +921,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </ul>
 </div>
 <div class="paragraph">
-<p>Cloud Pak for Integration uses AWS services and features, including virtual private clouds (VPCs), Availability Zones, security groups, and Elastic Load Balancing to build a reliable and scalable cloud platform.  </p>
+<p>Cloud Pak for Integration uses AWS services and features, including virtual private clouds (VPCs), Availability Zones, security groups, Amazon Elastic Block Store (Amazon EBS), Amazon Elastic Compute Cloud (EC2), and Elastic Load Balancing to build a reliable and scalable cloud platform.  </p>
 </div>
 <div class="paragraph">
 <p>This reference deployment provides AWS CloudFormation templates to deploy Cloud Pak for Integration on a new Red Hat OpenShift cluster. This cluster includes:  </p>
@@ -929,10 +929,10 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <div class="ulist">
 <ul>
 <li>
-<p>A Red Hat OpenShift Container Platform cluster created in a new or existing VPC on Red Hat CoreOS (RHCOS) instances, using the <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-customizations.html">Red Hat OpenShift Installer Provisioned Infrastructure</a>. See the <a href="https://docs.openshift.com/container-platform/4.4/architecture/architecture-installation.html">OpenShift Container Platform Installation overview</a> for details about the underlying OpenShift deployment architecture. </p>
+<p>A Red Hat OpenShift Container Platform (OCP) cluster created in a new or existing VPC on Red Hat CoreOS (RHCOS) instances, using the <a href="https://docs.openshift.com/container-platform/4.4/installing/installing_aws/installing-aws-customizations.html">Red Hat OpenShift Installer Provisioned Infrastructure</a>. See the <a href="https://docs.openshift.com/container-platform/4.4/architecture/architecture-installation.html">OpenShift Container Platform Installation overview</a> for details about the underlying OpenShift deployment architecture. </p>
 </li>
 <li>
-<p>A highly available storage infrastructure with Red Hat OpenShift Container Storage. </p>
+<p>A highly available storage infrastructure with Red Hat OpenShift Container Storage (OCS). </p>
 </li>
 <li>
 <p>Scalable OpenShift compute nodes for running Cloud Pak for Integration capabilities. </p>
@@ -976,7 +976,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>You can get started with a 60-day trial period or use your existing Cloud Pak for Integration entitlement. You also have the option to use an evaluation version of OpenShift Container Platform (OCP) and OpenShift Container Storage (OCS), or to use your existing entitlement to those components.</p>
+<p>You can get started with a 60-day trial period or use your existing Cloud Pak for Integration entitlement. You also have the option to use an evaluation version of Red Hat OCP and OCS, or to use your existing entitlement to those components.</p>
 </div>
 <div class="paragraph">
 <p>To get pricing information, or to use your existing Cloud Pak for Integration entitlements, contact your IBM sales representative.</p>
@@ -990,7 +990,7 @@ After you deploy the Quick Start, <a href="https://docs.aws.amazon.com/awsaccoun
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Deploying this Quick Start for a new virtual private cloud (VPC) with
+<p>Deploying this Quick Start for a new VPC with
 default parameters builds the following Cloud Pak for Integration environment in the
 AWS Cloud.</p>
 </div>
@@ -1021,8 +1021,7 @@ best practices, to provide you with your own virtual network on AWS.*</p>
 internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in public and private subnets.*</p>
+<p>A boot node Amazon EC2 instance that also serves as a bastion host to allow inbound Secure Shell (SSH) access to EC2 instances in the private subnets.</p>
 </li>
 </ul>
 </div>
@@ -1032,13 +1031,13 @@ Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in pub
 <div class="ulist">
 <ul>
 <li>
-<p>Red Hat OpenShift Container Platform (OCP) master nodes in up to three Availability Zones.</p>
+<p>Red Hat OCP master nodes in up to three Availability Zones.</p>
 </li>
 <li>
 <p>OCP compute nodes that host the Cloud Pak for Integration capabilities.</p>
 </li>
 <li>
-<p>Amazon Elastic Block Store (Amazon EBS) disks that are mounted on the compute nodes for container-persistent data.</p>
+<p>Amazon EBS disks that are mounted on the compute nodes for container-persistent data.</p>
 </li>
 </ul>
 </div>
@@ -1047,13 +1046,13 @@ Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in pub
 <p>A Classic Load Balancer spanning the public subnets for accessing Cloud Pak for Integration from a web browser.</p>
 </li>
 <li>
-<p>A Classic Load Balancer spanning the public subnets for accessing the OpenShift Container Storage (OCS) S3 service.</p>
+<p>A Classic Load Balancer spanning the public subnets for accessing the OCS S3 service.</p>
 </li>
 <li>
 <p>A Classic Load Balancer spanning the public subnets for accessing the OCS NooBaa service.</p>
 </li>
 <li>
-<p>A Network Load Balancer spanning the public subnets for routing external OpenShift application programming interface (API) traffic to the OCP master instances.</p>
+<p>A Network Load Balancer spanning the public subnets for routing external OpenShift API traffic to the OCP master instances.</p>
 </li>
 <li>
 <p>A Network Load Balancer spanning the private subnets for routing internal OpenShift API traffic to the OCP master instances.</p>
@@ -1181,7 +1180,7 @@ Review the <a href="https://www.ibm.com/support/pages/ibm-cloud-pak-integration
 <div class="sect3">
 <h4 id="_supported_regions">Supported Regions</h4>
 <div class="paragraph">
-<p>This deployment includes 3 Availability Zones, which isn’t currently supported in all AWS Regions. For a current list of supported Regions, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/regions_az/" target="_blank" rel="noopener">Regions and Availability Zones</a> in the AWS documentation.</p>
+<p>This deployment includes three Availability Zones, although not currently supported in all AWS Regions. For a current list of supported Regions, see <a href="https://aws.amazon.com/about-aws/global-infrastructure/regions_az/" target="_blank" rel="noopener">Regions and Availability Zones</a> in the AWS documentation.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1220,7 +1219,7 @@ Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.
 <p>If you don’t have a Red Hat account, you can register on the Red Hat website. (Note that registration may require a non-personal email address). To procure a 60-day evaluation license for OpenShift, follow the instructions at <a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/try-it" target="_blank" rel="noopener">Evaluate Red Hat OpenShift Container Platform</a>.</p>
 </div>
 <div class="paragraph">
-<p>The <a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned" target="_blank" rel="noopener">OpenShift pull secret</a> should be uploaded to an S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.</p>
+<p>The <a href="https://cloud.redhat.com/openshift/install/aws/installer-provisioned" target="_blank" rel="noopener">OpenShift pull secret</a> should be uploaded to an Amazon S3 bucket. The Quick Start will pull this secret file from the specified S3 bucket location to provision the cluster.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1235,7 +1234,7 @@ Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.
 <div class="sect3">
 <h4 id="_storage_subscription">Storage subscription</h4>
 <div class="paragraph">
-<p>The Quick Start uses OpenShift Container Storage (OCS) as technology to provide persistent storage for its capabilities and runtimes. You can use an evaluation version of OCS. See <a href="https://www.openshift.com/products/container-storage/contact" target="_blank" rel="noopener">OpenShift Container Storage</a> for information about licensed versions.</p>
+<p>The Quick Start uses OCS as technology to provide persistent storage for its capabilities and runtimes. You can use an evaluation version of OCS. See <a href="https://www.openshift.com/products/container-storage/contact" target="_blank" rel="noopener">OpenShift Container Storage</a> for information about licensed versions.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1285,7 +1284,7 @@ Certain Regions are available on an opt-in basis. See <a href="https://docs.aws.
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. There is no additional cost for using this Quick Start. For full details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
+You are responsible for the cost of the AWS services used while running this Quick Start reference deployment. No additional cost is required for using this Quick Start. For details, see the pricing pages for each AWS service used by this Quick Start. Prices are subject to change.
 </td>
 </tr>
 </table>
@@ -1326,7 +1325,7 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 </table>
 </div>
 <div class="paragraph">
-<p>Also, make sure that the domain name option in the DHCP options is configured as explained in the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a> topic in the Amazon VPC documentation. You provide your VPC settings when you launch the Quick Start.</p>
+<p>Also, make sure that the domain name option in the DHCP options is configured as explained in the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a> topic in the Amazon VPC documentation. You will provide your VPC settings when you launch the Quick Start.</p>
 </div>
 <div class="paragraph">
 <p>Each deployment takes about 2 hours to complete.</p>
@@ -1380,18 +1379,18 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 <h2 id="_test_the_deployment">Test the deployment</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to the Cloud Pak for Integration web client to verify the deployment, and then use the web client to explore Cloud Pak for Integration features.</p>
+<p>When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to the Cloud Pak for Integration user interface (UI) to verify the deployment, and then use the web client to explore Cloud Pak for Integration features.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>To access the Cloud Pak for Integration user interface, go to the <strong>CP4IWebClientURL</strong> output of the root stack, as shown in <a href="#cfn_outputs">Figure 3</a>.</p>
+<p>To access the Cloud Pak for Integration UI, go to the <strong>CP4IWebClientURL</strong> output of the root stack, as shown in <a href="#cfn_outputs">Figure 3</a>.</p>
 </li>
 <li>
-<p>A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the Cloud Pak for Integration web client login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the Cloud Pak for Integration cluster is self-signed, which causes the unsafe connection warning from your browser.</p>
+<p>A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the Cloud Pak for Integration UI login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the Cloud Pak for Integration cluster is self-signed, which causes the unsafe connection warning from your browser.</p>
 </li>
 <li>
-<p>Log in to the Cloud Pak for Integration web client by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the <strong>PlatformNavigatorPassword</strong> secret stored in AWS Secrets Manager.</p>
+<p>Log in to the Cloud Pak for Integration UI by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the <strong>PlatformNavigatorPassword</strong> secret stored in AWS Secrets Manager.</p>
 </li>
 <li>
 <p>After you log in, the welcome page is displayed as shown in <a href="#testStep1">Figure 4</a>.</p>
@@ -1399,7 +1398,7 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 <div class="content">
 <a class="image" href="images/image6.png"><img src="images/image6.png" alt="image_placeholder" width="648" height="439"></a>
 </div>
-<div class="title">Figure 4. Welcome page for Cloud Pak for Integration web client</div>
+<div class="title">Figure 4. Welcome page for Cloud Pak for Integration UI</div>
 </div>
 <div class="paragraph">
 <p>See <a href="https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&amp;page=1&amp;products=Cloud+Pak+for+Integration" target="_blank" rel="noopener">IBM Demos</a> for Cloud Pak for Integration videos and other resources to help you understand the platform features and capabilities.</p>
@@ -1415,7 +1414,7 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 <div class="sect2">
 <h3 id="_manage_your_cluster_using_the_openshift_console">Manage your cluster using the OpenShift Console</h3>
 <div class="paragraph">
-<p>To access the Cloud Pak for Integration web client, go to the <strong>OpenshiftURLValue</strong> shown in <a href="#cfn_outputs">Figure 3</a>.</p>
+<p>To access the Cloud Pak for Integration UI, go to the <strong>OpenshiftURLValue</strong> shown in <a href="#cfn_outputs">Figure 3</a>.</p>
 </div>
 <div class="paragraph">
 <p>The default OpenShift administrative user is <strong>kubeadmin.</strong> The password is stored in AWS Secrets Manager, and the name of the secret is displayed in <a href="#cfn_outputs">Figure 3</a> as the value of <strong>OpenshiftPassword</strong>.</p>
@@ -1609,15 +1608,15 @@ The cluster auto scaler can overrule the scaling activity to maintain the requir
 </table>
 </div>
 <div class="sect3">
-<h4 id="_installing_capabilities">Installing capabilities</h4>
+<h4 id="_installation_capabilities">Installation capabilities</h4>
 <div class="sect4">
-<h5 id="_installing_from_the_platform_navigator">Installing from the Platform Navigator</h5>
+<h5 id="_install_from_the_platform_navigator">Install from the Platform Navigator</h5>
 <div class="paragraph">
-<p>To learn more about installing capabilities using the OpenShift Platform Navigator, see <a href="https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html" target="_blank" rel="noopener">Deploying Component Products</a> in the IBM Knowledge Center.</p>
+<p>To learn more about installation capabilities using the OpenShift Platform Navigator, see <a href="https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html" target="_blank" rel="noopener">Deploying Component Products</a> in the IBM Knowledge Center.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_installing_from_the_aws_boot_node">Installing from the AWS boot node</h5>
+<h5 id="_install_from_the_aws_boot_node">Install from the AWS boot node</h5>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -1738,7 +1737,7 @@ The cluster auto scaler can overrule the scaling activity to maintain the requir
 </div>
 </li>
 <li>
-<p>To trace installation progress, go to the OpenShift web console and select <strong>Events</strong> in the left navigation menu, as shown in <a href="#postDeployStep2">Figure 12</a>.</p>
+<p>To trace installation progress, go to the OpenShift UI and select <strong>Events</strong> in the left navigation menu, as shown in <a href="#postDeployStep2">Figure 12</a>.</p>
 <div id="postDeployStep2" class="imageblock">
 <div class="content">
 <a class="image" href="images/image26.png"><img src="images/image26.png" alt="image_placeholder" width="648" height="439"></a>
@@ -1809,7 +1808,7 @@ The cluster auto scaler can overrule the scaling activity to maintain the requir
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. This setting is under <strong>Advanced</strong> in the AWS CloudFormation console on the  <strong>Configure stack options</strong> page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. This setting is under <strong>Advanced</strong> in the AWS CloudFormation console on the <strong>Configure stack options</strong> page. With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1854,7 +1853,7 @@ When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, 
 <p>To resolve the error, either uninstall nonessential capabilities and runtimes or add more worker nodes to the cluster until the resource requirements are fulfilled.</p>
 </div>
 <div class="paragraph">
-<p><strong>Q.</strong> OpenShift shows pods on pending status for an excessive period of time.</p>
+<p><strong>Q.</strong> OpenShift shows pods on Pending status for an excessive period of time.</p>
 </div>
 <div class="paragraph">
 <p><strong>A.</strong> If the installation is still in Pending state after a long time or is in Failed state, the cluster might not be ready yet, or another temporary error might have occured.</p>
