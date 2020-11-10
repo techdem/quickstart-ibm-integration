@@ -4,27 +4,27 @@
 == Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
 
-When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to the {partner-product-short-name} web client to verify the deployment, and then use the web client to explore {partner-product-short-name} features.
+When the AWS CloudFormation template has successfully created the stack, all server nodes are running with the software installed in your AWS account. In the following steps, connect to the {partner-product-short-name} user interface (UI) to verify the deployment, and then use the web client to explore {partner-product-short-name} features.
 
-. To access the {partner-product-short-name} user interface, go to the *CP4IWebClientURL* output of the root stack, as shown in <<cfn_outputs>>.
-. A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the {partner-product-short-name} web client login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the {partner-product-short-name} cluster is self-signed, which causes the unsafe connection warning from your browser.
-. Log in to the {partner-product-short-name} web client by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
+. To access the {partner-product-short-name} UI, go to the *CP4IWebClientURL* output of the root stack, as shown in <<cfn_outputs>>.
+. A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the {partner-product-short-name} UI login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the {partner-product-short-name} cluster is self-signed, which causes the unsafe connection warning from your browser.
+. Log in to the {partner-product-short-name} UI by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
 . After you log in, the welcome page is displayed as shown in <<testStep1>>.
 +
 :xrefstyle: short
 [#testStep1]
-.Welcome page for {partner-product-short-name} web client
+.Welcome page for {partner-product-short-name} UI
 [link=images/image6.png]
 image::../images/image6.png[image_placeholder,width=648,height=439]
 +
 See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos^] for {partner-product-short-name} videos and other resources to help you understand the platform features and capabilities.
 
 
-== Post deployment steps
+== Post-deployment steps
 
 === Manage your cluster using the OpenShift Console
 
-To access the {partner-product-short-name} web client, go to the *OpenshiftURLValue* shown in <<cfn_outputs>>.
+To access the {partner-product-short-name} UI, go to the *OpenshiftURLValue* shown in <<cfn_outputs>>.
 
 The default OpenShift administrative user is *kubeadmin.* The password is stored in AWS Secrets Manager, and the name of the secret is displayed in <<cfn_outputs>> as the value of *OpenshiftPassword*.
 
@@ -36,7 +36,7 @@ To retrieve the password, navigate to the AWS Systems Manager console, choose th
 [link=images/image8.png]
 image::../images/image8.png[image_placeholder,width=648,height=439]
 
-=== Accessing the control plane through the boot node
+=== Access the control plane through the boot node
 
 The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as described in the following Bash instructions:
 
@@ -62,7 +62,7 @@ $ oc login
 $ oc get pods
 ```
 
-=== Scaling up your cluster by adding compute nodes
+=== Scale up your cluster by adding compute nodes
 
 . Run `oc nodes` to get the current list of nodes.
 . Run `oc get machineset -n openshift-machine-api` to get the machine sets for each Availability Zone.
@@ -126,13 +126,13 @@ As part of the Quick Start installation, the Platform Navigator is installed by 
 |===
 
 
-==== Installing capabilities
+==== Installation capabilities
 
-===== Installing from the Platform Navigator
+===== Install from the Platform Navigator
 
-To learn more about installing capabilities using the OpenShift Platform Navigator, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deploying Component Products^] in the IBM Knowledge Center.
+To learn more about installation capabilities using the OpenShift Platform Navigator, see https://www.ibm.com/support/knowledgecenter/SSGT7J_20.3/install/deploying.html[Deploying Component Products^] in the IBM Knowledge Center.
 
-===== Installing from the AWS boot node
+===== Install from the AWS boot node
 
 . Log in to your AWS boot node server.
 . Navigate to scripts directory.
@@ -216,7 +216,7 @@ Example:
 [link=images/image25.png]
 image::../images/image25.png[image_placeholder,width=648,height=439]
 
-. To trace installation progress, go to the OpenShift web console and select *Events* in the left navigation menu, as shown in <<postDeployStep2>>.
+. To trace installation progress, go to the OpenShift UI and select *Events* in the left navigation menu, as shown in <<postDeployStep2>>.
 +
 :xrefstyle: short
 [#postDeployStep2]
