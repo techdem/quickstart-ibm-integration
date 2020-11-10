@@ -20,7 +20,7 @@ image::../images/image6.png[image_placeholder,width=648,height=439]
 See https://www.ibm.com/demos/search/?product=Cloud+Pak+for+Integration&page=1&products=Cloud+Pak+for+Integration[IBM Demos^] for {partner-product-short-name} videos and other resources to help you understand the platform features and capabilities.
 
 
-== Post deployment steps
+== Post-deployment steps
 
 === Manage your cluster using the OpenShift Console
 
@@ -36,7 +36,7 @@ To retrieve the password, navigate to the AWS Systems Manager console, choose th
 [link=images/image8.png]
 image::../images/image8.png[image_placeholder,width=648,height=439]
 
-=== Accessing the control plane through the boot node
+=== Access the control plane through the boot node
 
 The recommended method of SSH access to the OpenShift cluster instances via the bastion host is by using SSH agent forwarding, as described in the following Bash instructions:
 
@@ -62,7 +62,7 @@ $ oc login
 $ oc get pods
 ```
 
-=== Scaling up your cluster by adding compute nodes
+=== Scale up your cluster by adding compute nodes
 
 . Run `oc nodes` to get the current list of nodes.
 . Run `oc get machineset -n openshift-machine-api` to get the machine sets for each Availability Zone.
