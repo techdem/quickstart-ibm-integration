@@ -301,7 +301,7 @@ Parameters:
     Description: Update this value if storage type is OCS. The EC2 instance type for the OpenShift Container Storage instances.
     Type: String
   RedhatPullSecret:
-    Description: Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/portworxspec.yaml).
+    Description: Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/pull-secret).
     Type: String
   CP4IVersion:
     Description: The version of IBM Cloud Pak for Integration to be deployed. Currently only 2020.3 is supported.
@@ -427,7 +427,7 @@ Parameters:
     AllowedPattern: ^[0-9a-zA-Z-/]*$
     ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters,
       uppercase letters, hyphens (-), and forward slash (/).
-    Default: quickstart-ibm-icp-for-integration/  
+    Default: quickstart-ibm-integration/  
     Description: S3 key prefix that is used to simulate a directory for your copy of Quick Start assets. Use this if you decide to customize the Quick Start. This prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/). See https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html. Unless you are customizing the template, keep the default setting. Changing this setting updates code references to point to a new Quick Start location. See https://aws-quickstart.github.io/option1.html.
     Type: String
   CP4IDeploymentLogsBucketName:
