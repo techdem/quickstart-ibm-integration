@@ -8,7 +8,7 @@ When the AWS CloudFormation template has successfully created the stack, all ser
 
 . To access the {partner-product-short-name} UI, go to the *CP4IWebClientURL* output of the root stack, as shown in <<cfn_outputs>>.
 . A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the {partner-product-short-name} UI login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the {partner-product-short-name} cluster is self-signed, which causes the unsafe connection warning from your browser.
-. Log in to the {partner-product-short-name} UI by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
+. Log in to the {partner-product-short-name} UI by using the default user name "admin" and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the *PlatformNavigatorPassword* secret stored in AWS Secrets Manager.
 . After you log in, the welcome page is displayed as shown in <<testStep1>>.
 +
 :xrefstyle: short
