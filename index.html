@@ -1390,7 +1390,7 @@ If you’re deploying Cloud Pak for Integration into an existing VPC, make sure 
 <p>A new tab opens in your browser. If you configured the hostname resolution for the cluster DNS name in the URL, you see either the Cloud Pak for Integration UI login page or a warning from your browser that the HTTPS connection is not safe. By default, the public key infrastructure (PKI) certificate that is created for the Cloud Pak for Integration cluster is self-signed, which causes the unsafe connection warning from your browser.</p>
 </li>
 <li>
-<p>Log in to the Cloud Pak for Integration UI by using the default user admin and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the <strong>PlatformNavigatorPassword</strong> secret stored in AWS Secrets Manager.</p>
+<p>Log in to the Cloud Pak for Integration UI by using the default user name "admin" and the password you supplied when creating the stack. If you did not supply a password, you can retrieve it from the <strong>PlatformNavigatorPassword</strong> secret stored in AWS Secrets Manager.</p>
 </li>
 <li>
 <p>After you log in, the welcome page is displayed as shown in <a href="#testStep1">Figure 4</a>.</p>
@@ -2124,7 +2124,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat pull secret
 (<code>RedhatPullSecret</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/portworxspec.yaml).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/pull-secret).</p></td>
 </tr>
 </tbody>
 </table>
@@ -2265,7 +2265,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
 (<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-ibm-icp-for-integration/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-ibm-integration/</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix that is used to simulate a directory for your copy of Quick Start assets. Use this if you decide to customize the Quick Start. This prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/). See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html" class="bare">https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html</a>. Unless you are customizing the template, keep the default setting. Changing this setting updates code references to point to a new Quick Start location. See <a href="https://aws-quickstart.github.io/option1.html" class="bare">https://aws-quickstart.github.io/option1.html</a>.</p></td>
 </tr>
 <tr>
@@ -2509,7 +2509,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <td class="tableblock halign-left valign-top"><p class="tableblock">Red Hat pull secret
 (<code>RedhatPullSecret</code>)</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code><strong><em>Requires input</em></strong></code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/portworxspec.yaml).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Your Red Hat Network (RHN) pull secret (e.g., s3://my-bucket/path/to/pull-secret).</p></td>
 </tr>
 </tbody>
 </table>
@@ -2650,7 +2650,7 @@ Region</code>, and <code>Quick Start S3 key prefix</code>. Changing these parame
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Quick Start S3 key prefix
 (<code>QSS3KeyPrefix</code>)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-ibm-icp-for-integration/</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quickstart-ibm-integration/</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">S3 key prefix that is used to simulate a directory for your copy of Quick Start assets. Use this if you decide to customize the Quick Start. This prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), and forward slashes (/). See <a href="https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html" class="bare">https://docs.aws.amazon.com/AmazonS3/latest/dev/UsingMetadata.html</a>. Unless you are customizing the template, keep the default setting. Changing this setting updates code references to point to a new Quick Start location. See <a href="https://aws-quickstart.github.io/option1.html" class="bare">https://aws-quickstart.github.io/option1.html</a>.</p></td>
 </tr>
 <tr>
