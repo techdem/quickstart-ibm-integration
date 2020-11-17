@@ -232,18 +232,6 @@ class CP4IntegrationInstall(object):
         return destPath
     #endDef
 
-    def updateStatus(self, status):
-        methodName = "updateStatus"
-        TR.info(methodName," Update Status of installation")
-        data = "301_AWS_STACKNAME="+self.stackName+",Status="+status
-        updateStatus = "curl -X POST https://un6laaf4v0.execute-api.us-west-2.amazonaws.com/testtracker --data "+data
-        try:
-            call(updateStatus, shell=True)
-            TR.info(methodName,"Updated status with data %s"%data)
-        except CalledProcessError as e:
-            TR.error(methodName,"command '{}' return with error (code {}): {}".format(e.cmd, e.returncode, e.output))    
-    #endDef    
-
     def configureOCS(self,icp4iInstallLogFile):
         """
         This method reads user preferences from stack parameters and configures OCS as storage classs accordingly.
@@ -709,15 +697,11 @@ class CP4IntegrationInstall(object):
             success = 'true'
             status = 'SUCCESS'
             TR.info(methodName,"SUCCESS END CP4I Install AWS ICP4I Quickstart.  Elapsed time (hh:mm:ss): %d:%02d:%02d" % (eth,etm,ets))
-            # TODO update this later
-            self.updateStatus(status)
         else:
             success = 'false'
             status = 'FAILURE: Check logs in S3 log bucket or on the Boot node EC2 instance in /ibm/logs/icp4i_install.log and /ibm/logs/post_install.log'
             TR.info(methodName,"FAILED END CP4I Install AWS ICP4I Quickstart.  Elapsed time (hh:mm:ss): %d:%02d:%02d" % (eth,etm,ets))
-            # # TODO update this later
-            self.updateStatus(status)
-           
+
         #endIf 
         try:
             data = "%s: IBM Cloud Pak installation elapsed time: %d:%02d:%02d" % (status,eth,etm,ets)    
