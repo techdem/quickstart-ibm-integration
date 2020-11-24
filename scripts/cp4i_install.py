@@ -697,16 +697,12 @@ class CP4IntegrationInstall(object):
             success = 'true'
             status = 'SUCCESS'
             TR.info(methodName,"SUCCESS END CP4I Install AWS ICP4I Quickstart.  Elapsed time (hh:mm:ss): %d:%02d:%02d" % (eth,etm,ets))
-            # TODO update this later
-            self.updateStatus(status)
         else:
             success = 'false'
             status = 'FAILURE: Check logs in S3 log bucket or on the Boot node EC2 instance in /ibm/logs/icp4i_install.log and /ibm/logs/post_install.log'
             TR.info(methodName,"FAILED END CP4I Install AWS ICP4I Quickstart.  Elapsed time (hh:mm:ss): %d:%02d:%02d" % (eth,etm,ets))
-            # # TODO update this later
-            self.updateStatus(status)
-           
-        #endIf 
+        #endIf
+
         try:
             data = "%s: IBM Cloud Pak installation elapsed time: %d:%02d:%02d" % (status,eth,etm,ets)    
             check_call(['cfn-signal', 
